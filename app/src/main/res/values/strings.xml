@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Agenda Universitaria</string>
+    <string name="title" style="text-decoration=underline"><u>Agenda \nUniversitaria</u></string>
+</resources>

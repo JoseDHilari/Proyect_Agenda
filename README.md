@@ -1,1 +1,9 @@
-# Proyect_Agenda
+Agenda Universitaria será una aplicación móvil enfocada en la población estudiantil de la UNA, buscará mejorar y apoyar en la organización de los horarios, así como proveer una herramienta que permita organizar los materiales de la asignatura, como fotos, libros digitales (PDFs) y notas tomadas en clase, mejorando la eficiencia y productividad académica. Esta aplicación contará con una interfaz intuitiva y fácil de usar, diseñada para que los estudiantes puedan gestionar de manera efectiva su tiempo y recursos educativos.
+
+Una de las características principales de Agenda Universitaria será su capacidad para crear horarios personalizados para cada usuario, teniendo en cuenta sus cursos, actividades extracurriculares y horarios disponibles. Esto permitirá una visualización clara de las responsabilidades y compromisos de cada día, facilitando la planificación y la toma de decisiones en cuanto a la distribución del tiempo.
+
+Además de la gestión de horarios, la aplicación ofrecerá la posibilidad de adjuntar notas tomadas en clase, archivos digitales relevantes como presentaciones, documentos en PDF y libros electrónicos, así como fotos relacionadas con el contenido de los cursos. Estos recursos serán organizados de manera ordenada y accesible, lo que facilita su consulta y estudio en cualquier momento y lugar.
+
+Otra función destacada de Agenda Universitaria será la gestión de tareas y trabajos asignados en clase. Los usuarios podrán registrar las tareas pendientes, establecer fechas de entrega y recibir recordatorios para cumplir con sus responsabilidades académicas de manera oportuna.
+
+En resumen, Agenda Universitaria será una herramienta completa que combina la gestión de horarios, la organización de materiales educativos y la administración de tareas, todo en una sola plataforma diseñada para mejorar la experiencia académica de los estudiantes universitarios.

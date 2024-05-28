@@ -8,20 +8,45 @@
     android:background="@drawable/degradado"
     tools:context=".AgregarCursoActivity">
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="409dp"
+    <ImageButton
+        android:id="@+id/AddNewCourse"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/check"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        tools:ignore="MissingConstraints"/>
+    <ImageButton
+        android:id="@+id/CancelNewCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cancel"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="15dp"
+        tools:ignore="MissingConstraints"/>
+    <EditText
+        android:id="@+id/CourseName"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Nombre del curso"
         android:background="@color/Manteca"
-        android:radius="50dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="30dp"
-        tools:ignore="MissingConstraints">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="hint" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:textColor="@color/Plomo"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@color/Azul"
+        app:layout_constraintTop_toBottomOf="@id/CourseName"
+        android:layout_marginTop="15dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

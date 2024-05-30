@@ -1,8 +1,11 @@
 package hilari.abarca.my_first_apk
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ScrollView
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,13 +16,6 @@ class HorarioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_horario)
-
-        // Configurar ajustes de ventana
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         // Obtener referencias a los Spinners
         val spinnerDay = findViewById<Spinner>(R.id.HorarioDay)
@@ -42,13 +38,14 @@ class HorarioActivity : AppCompatActivity() {
         val yearAdapter = ArrayAdapter(this, R.layout.spinner_item, years)
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerYear.adapter = yearAdapter
-/*
-        // Configurar ImageButton para agregar nuevos cursos (o cualquier acción)
-        val newCourseButton = findViewById<ImageButton>(R.id.NewCourse)
-        newCourseButton.setOnClickListener {
-            // Acción para el botón, por ejemplo, abrir una nueva actividad o dialogo
-            // Por ahora, simplemente muestra un mensaje
-            println("Nuevo curso añadido!")
-        }*/
+
+        findViewById<ImageButton>(R.id.NewCourse).setOnClickListener {
+            val intent = Intent(this,AgregarCursoActivity::class.java)
+            startActivity(intent)
+        }
+        findViewById<ScrollView>(R.id.HorarioView).setOnClickListener {
+            val intent = Intent(this,MenuActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

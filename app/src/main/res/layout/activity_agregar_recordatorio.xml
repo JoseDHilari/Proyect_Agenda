@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarRecordatorioActivity"
+    android:background="@drawable/degradado">
+
+    <EditText
+        android:id="@+id/CourseName"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Nombre del curso"
+        android:background="@color/Manteca"
+        android:textColorHint="@color/Plomo"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@color/Azul"
+        app:layout_constraintTop_toBottomOf="@id/CourseName"
+        android:layout_marginTop="15dp"
+        tools:ignore="MissingConstraints" />
+    <ScrollView
+        android:id="@+id/AddRecodatorioView"
+        android:layout_width="match_parent"
+        android:layout_height="510dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:padding="5dp"
+                android:background="@color/Celeste"
+                android:text="   Fecha:"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <DatePicker
+                android:id="@+id/RecordatorioDate"
+                android:layout_width="350dp"
+                android:layout_height="435dp"
+                android:layout_marginStart="30dp"
+                android:background="@color/Amarillo_Fondo"
+                android:calendarTextColor="@color/black"
+                android:yearListSelectorColor="@color/Azul"
+                android:headerBackground="@color/Azul"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:padding="5dp"
+                android:background="@color/Celeste"
+                android:text="   Hora:"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TimePicker
+                android:id="@+id/RecordatorioHour"
+                android:layout_width="180dp"
+                android:layout_height="300dp"
+                android:layout_marginStart="110dp"
+                tools:ignore="MissingConstraints"
+                android:numbersSelectorColor="@color/Azul"
+                android:headerBackground="@color/Azul"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:padding="5dp"
+                android:background="@color/Celeste"
+                android:text="   Actividad:"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/ActivityName"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="30dp"
+                android:inputType="text"
+                android:textSize="20sp"
+                android:paddingLeft="10dp"
+                android:hint="Nombre de la Actividad"
+                android:background="@color/Manteca"
+                android:textColor="@color/black"
+                android:textColorHint="@color/Plomo"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:padding="5dp"
+                android:background="@color/Celeste"
+                android:text="   Activar la alarma:"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <Switch
+                android:id="@+id/BoolAlarma"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+        </LinearLayout>
+    </ScrollView>
+    <ImageButton
+        android:id="@+id/CancelRecordatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cancel"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="15dp"
+        tools:ignore="MissingConstraints"/>
+    <ImageButton
+        android:id="@+id/FinishRecordatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        tools:ignore="MissingConstraints"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

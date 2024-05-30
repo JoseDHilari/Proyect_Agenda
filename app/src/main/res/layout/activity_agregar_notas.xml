@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/degradado"
-    tools:context=".AgregarCursoActivity">
+    tools:context=".AgregarNotasActivity"
+    android:background="@drawable/degradado">
 
     <EditText
         android:id="@+id/CourseName"
@@ -28,14 +28,13 @@
         app:layout_constraintTop_toBottomOf="@id/CourseName"
         android:layout_marginTop="15dp"
         tools:ignore="MissingConstraints" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:padding="5dp"
         android:background="@color/Celeste"
-        android:text="   Dia:"
+        android:text="   Titulo de la nota:"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -44,27 +43,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.13"/>
-
-    <Spinner
-        android:id="@+id/Day"
-        android:layout_width="200dp"
+    <EditText
+        android:id="@+id/NotaName"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:inputType="text"
+        android:hint="   Nota 1"
+        android:textColor="@color/black"
+        android:textColorHint="@color/Plomo"
+        android:layout_margin="15dp"
+        android:padding="5dp"
         android:background="@color/Manteca"
-        android:padding="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintVertical_bias="0.22"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.206"
+        tools:ignore="MissingConstraints" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:padding="5dp"
         android:background="@color/Celeste"
-        android:text="   Hora:"
+        android:text="  Descripcion de la nota:"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -73,84 +75,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.289"/>
-    <TextView
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-        android:text="Inicio:"
-        android:background="@color/Manteca"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NotaName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.37"
-        android:layout_marginStart="15dp"
-        android:gravity="center_vertical"
-        android:paddingStart="20dp"
-        tools:ignore="RtlSymmetry" />
-
-    <TextView
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-        android:text="Final:"
-        android:background="@color/Manteca"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.37"
-        android:layout_marginEnd="55dp"
-        android:gravity="center_vertical"
-        android:paddingStart="20dp"
-        tools:ignore="RtlSymmetry" />
-
-    <TimePicker
-        android:id="@+id/StartHour"
-        android:layout_width="180dp"
-        android:layout_height="300dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.715"
-        android:layout_marginStart="15dp"
-        tools:ignore="MissingConstraints" />
-
-    <TimePicker
-        android:id="@+id/EndHour"
-        android:layout_width="180dp"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.715"
-        android:layout_marginEnd="15dp"
-        tools:ignore="MissingConstraints" />
-
+        app:layout_constraintVertical_bias="0.35">
+        <EditText
+            android:id="@+id/NotaText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Manteca"
+            android:hint="...................."
+            android:textColor="@color/black"
+            android:textColorHint="@color/Plomo"
+            android:layout_marginHorizontal="15dp"/>
+    </ScrollView>
     <ImageButton
-        android:id="@+id/FinishNewCourse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/check"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="15dp"
-        tools:ignore="MissingConstraints"/>
-
-    <ImageButton
-        android:id="@+id/AddNewHour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/mas"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints"/>
-
-    <ImageButton
-        android:id="@+id/CancelNewCourse"
+        android:id="@+id/CancelNota"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/cancel"
@@ -159,5 +103,14 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="15dp"
         tools:ignore="MissingConstraints"/>
-
+    <ImageButton
+        android:id="@+id/FinishNota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        tools:ignore="MissingConstraints"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

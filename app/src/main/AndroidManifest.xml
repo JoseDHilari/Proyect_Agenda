@@ -13,10 +13,34 @@
         android:theme="@style/Theme.My_first_apk"
         tools:targetApi="31">
         <activity
-            android:name=".Pruebita_2Activity"
+            android:name=".AgregarArchivoActivity"
             android:exported="false" />
         <activity
-            android:name=".PruebitaActivity"
+            android:name=".ArchivosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarFotoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarMultimediaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MultimediaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarNotasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarRecordatorioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecordatorioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuActivity"
             android:exported="false" />
         <activity
             android:name=".AgregarCursoActivity"

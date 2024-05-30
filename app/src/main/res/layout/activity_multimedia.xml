@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MultimediaActivity"
+    android:background="@drawable/degradado">
+
+    <TextView
+        android:id="@+id/CourseName"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="Nombre del curso"
+        android:background="@color/Manteca"
+        android:textColor="@color/Plomo"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_margin="15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:paddingStart="15dp"
+        android:paddingTop="5dp"
+        tools:ignore="MissingConstraints,RtlSymmetry"
+        android:src="@drawable/back"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@color/Azul"
+        app:layout_constraintTop_toBottomOf="@id/CourseName"
+        android:layout_marginTop="15dp"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        android:background="@color/Azul"
+        android:text="   MULTIMEDIA:"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.12"/>
+
+    <ScrollView
+        android:id="@+id/MultimediaView"
+        android:layout_width="370dp"
+        android:layout_height="450dp"
+        android:background="@color/Manteca"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53"
+        tools:ignore="MissingConstraints">
+
+        <FrameLayout
+            android:id="@+id/DesMultimedia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@color/Amarillo_Fondo">
+
+        </FrameLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/NewMultimedia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mas"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        tools:ignore="MissingConstraints"/>
+    <ImageButton
+        android:id="@+id/TomarFoto"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/camara"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="20dp"
+        tools:ignore="MissingConstraints"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

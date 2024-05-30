@@ -1,5 +1,6 @@
 package hilari.abarca.my_first_apk
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -14,6 +15,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Configurar el OnClickListener para el botón de navegación
-        findViewById<Button>(R.id.button).setOnClickListener {
+        findViewById<Button>(R.id.Ingresar).setOnClickListener {
             val intent = Intent(this, HorarioActivity::class.java)
             startActivity(intent)
         }

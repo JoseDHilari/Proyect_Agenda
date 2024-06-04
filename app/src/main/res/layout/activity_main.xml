@@ -91,7 +91,7 @@
         android:textColor="@color/white"/>
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/Usuario"
         android:layout_width="249dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,7 +110,7 @@
         tools:ignore="MissingConstraints,RtlHardcoded,RtlSymmetry" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/Password"
         android:layout_width="249dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -128,19 +128,4 @@
         android:textColor="@color/black"
         tools:ignore="MissingConstraints,RtlSymmetry" />
 
-    <ImageButton
-        android:id="@+id/buttonTogglePassword"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.82"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
-        android:layout_alignTop="@id/editTextTextPassword"
-        android:background="@android:color/transparent"
-        android:src="@android:drawable/ic_menu_view"
-        android:contentDescription="Toggle Password Visibility"
-        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

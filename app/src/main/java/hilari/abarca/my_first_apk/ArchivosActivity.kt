@@ -2,7 +2,7 @@ package hilari.abarca.my_first_apk
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.LinearLayout
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,11 +13,11 @@ class ArchivosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_archivos)
-        findViewById<LinearLayout>(R.id.back).setOnClickListener {
+        findViewById<ImageButton>(R.id.back).setOnClickListener {
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
-        findViewById<LinearLayout>(R.id.NewArchivo).setOnClickListener {
+        findViewById<ImageButton>(R.id.NewArchivo).setOnClickListener {
             val intent = Intent(this, AgregarArchivoActivity::class.java)
             startActivity(intent)
         }

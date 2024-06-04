@@ -82,7 +82,7 @@
                 android:layout_marginStart="110dp"
                 tools:ignore="MissingConstraints"
                 android:numbersSelectorColor="@color/Azul"
-                android:headerBackground="@color/Azul"/>
+                android:headerBackground="@color/Azul" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

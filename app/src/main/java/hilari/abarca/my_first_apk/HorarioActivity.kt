@@ -48,4 +48,5 @@ class HorarioActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 }

@@ -47,6 +47,10 @@ class HorarioActivity : AppCompatActivity() {
             val intent = Intent(this,MenuActivity::class.java)
             startActivity(intent)
         }
+        findViewById<ImageButton>(R.id.ViewCalendario).setOnClickListener {
+            val intent = Intent(this,CalendarioActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }

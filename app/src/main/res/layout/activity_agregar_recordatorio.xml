@@ -55,16 +55,12 @@
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
-
-            <DatePicker
+            <CalendarView
                 android:id="@+id/RecordatorioDate"
-                android:layout_width="350dp"
-                android:layout_height="435dp"
-                android:layout_marginStart="30dp"
-                android:background="@color/Amarillo_Fondo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:calendarTextColor="@color/black"
-                android:yearListSelectorColor="@color/Azul"
-                android:headerBackground="@color/Azul"/>
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

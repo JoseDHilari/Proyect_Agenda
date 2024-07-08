@@ -49,17 +49,15 @@
         <CalendarView
             android:id="@+id/Calendario"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
-            android:layout_weight="5"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="20dp"
-            android:layout_weight="0.6"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:background="@color/Azul"
             android:padding="5dp"
             android:text="ACTIVIDADES DEL MES:"
@@ -71,10 +69,9 @@
         <FrameLayout
             android:id="@+id/LisRecordView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="4"
+            android:layout_marginVertical="15dp"
             android:background="@color/Manteca"
             app:layout_constraintTop_toBottomOf="@id/Calendario">
 
@@ -88,7 +85,9 @@
                 <ListView
                     android:id="@+id/LisHorario"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></ListView>
+                    android:layout_height="match_parent">
+
+                </ListView>
             </ScrollView>
         </FrameLayout>
     </LinearLayout>

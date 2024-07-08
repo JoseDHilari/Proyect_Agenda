@@ -14,7 +14,6 @@ import androidx.core.view.WindowInsetsCompat
 class AgregarCursoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_agregar_curso)
 
         val spinnerDay = findViewById<Spinner>(R.id.Day)

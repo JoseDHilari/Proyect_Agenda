@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 class NotasActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_notas)
 
         findViewById<ImageButton>(R.id.back).setOnClickListener {

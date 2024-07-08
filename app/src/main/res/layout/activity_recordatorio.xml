@@ -41,31 +41,30 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="15dp"
         android:padding="5dp"
         android:background="@color/Azul"
         android:text="   RECORDATORIOS:"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.12"/>
+        android:layout_marginTop="100dp"/>
 
     <ScrollView
         android:id="@+id/RecordatorioView"
-        android:layout_width="370dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/Manteca"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45"
-        tools:ignore="MissingConstraints">
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="130dp">
 
         <FrameLayout
             android:id="@+id/DesRecordatorio"

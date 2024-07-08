@@ -26,10 +26,14 @@ class MainActivity : AppCompatActivity() {
 
         val Usuario = findViewById<EditText>(R.id.Usuario)
         val Password = findViewById<EditText>(R.id.Password)
+
         findViewById<Button>(R.id.Ingresar).setOnClickListener {
-            if (Usuario.text.toString().trim() == "Dh" && Password.text.toString().trim() == "72324581") {
+            if (Usuario.text.toString().trim() == "dh" && Password.text.toString().trim() == "123") {
                 val intent = Intent(this, HorarioActivity::class.java)
                 startActivity(intent)
+            }
+            else if (Usuario.text.toString().trim() == "" && Password.text.toString().trim() == "") {
+                Toast.makeText(this, "Datos no ingresados", Toast.LENGTH_LONG).show()
             }
             else {
                 Toast.makeText(this, "Usuario o contraseña incorrecta", Toast.LENGTH_LONG).show()

@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 class ArchivosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_archivos)
         findViewById<ImageButton>(R.id.back).setOnClickListener {
             val intent = Intent(this, MenuActivity::class.java)

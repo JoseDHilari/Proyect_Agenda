@@ -44,10 +44,9 @@
         android:layout_height="530dp"
         android:columnCount="2"
         android:rowCount="2"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="15dp"
-        tools:ignore="MissingConstraints">
+        android:layout_marginTop="90dp"
+        android:padding="15dp">
         <LinearLayout
             android:id="@+id/Recordatorios"
             android:layout_width="180dp"

@@ -76,21 +76,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
-        android:layout_marginBottom="10dp">
-        <ScrollView
-            android:id="@+id/HorarioView"
+        android:layout_marginBottom="10dp"
+        android:background="@color/Amarillo_Fondo"
+        android:padding="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_Curso"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/Amarillo_Fondo"
-            tools:ignore="MissingConstraints">
+            android:layout_height="match_parent"/>
 
-            <ListView
-                android:id="@+id/LisHorario"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </ListView>
-        </ScrollView>
     </FrameLayout>
 
     <LinearLayout

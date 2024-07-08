@@ -12,7 +12,6 @@ import com.google.android.material.datepicker.MaterialDatePicker
 class AgregarRecordatorioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_agregar_recordatorio)
 
         findViewById<ImageButton>(R.id.FinishRecordatorio).setOnClickListener {

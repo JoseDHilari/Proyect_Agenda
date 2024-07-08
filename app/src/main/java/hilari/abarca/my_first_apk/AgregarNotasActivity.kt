@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 class AgregarNotasActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_agregar_notas)
         findViewById<ImageButton>(R.id.FinishNota).setOnClickListener {
             val intent = Intent(this, NotasActivity::class.java)

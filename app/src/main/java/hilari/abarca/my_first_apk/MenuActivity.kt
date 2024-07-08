@@ -12,7 +12,6 @@ import androidx.core.view.WindowInsetsCompat
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_menu)
 
         findViewById<ImageButton>(R.id.back).setOnClickListener {

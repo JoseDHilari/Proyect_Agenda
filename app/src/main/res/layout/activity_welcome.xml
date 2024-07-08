@@ -36,14 +36,15 @@
         tools:ignore="SmallSp" />
     <Button
         android:id="@+id/Ingresar"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8"
         android:text="INGRESAR"
+        android:textSize="18dp"
         android:backgroundTint="@color/Azul"
         android:textColor="@color/white"/>
     <ImageView

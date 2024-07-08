@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 class AgregarArchivoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_agregar_archivo)
 
         findViewById<ImageButton>(R.id.FinishArchivo).setOnClickListener {

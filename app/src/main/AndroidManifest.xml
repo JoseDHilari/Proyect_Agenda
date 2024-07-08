@@ -26,10 +26,10 @@
         </activity>
         <activity
             android:name=".AgregarArchivoActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ArchivosActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".AgregarFotoActivity"
             android:exported="false" />
@@ -62,7 +62,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
     </application>
 
 </manifest>

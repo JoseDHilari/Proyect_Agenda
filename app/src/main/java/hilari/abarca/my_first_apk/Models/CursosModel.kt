@@ -4,5 +4,6 @@ data class CursosModel(
     val HoraInicio:String,
     val HoraFinal:String,
     val NombreCurso:String,
-    val Alarma:Boolean
+    val Alarma:Boolean,
+    val idCurso:Int = 0
 )

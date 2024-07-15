@@ -6,15 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/degradado"
-    tools:context=".AgregarCursoActivity">
+    tools:context=".AgregarNuevaHoraActivity">
 
-    <EditText
+    <TextView
         android:id="@+id/CourseName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Nombre del curso"
+        android:text="Nombre del curso"
         android:background="@color/Manteca"
-        android:textColorHint="@color/Plomo"
+        android:textColorHint="@color/black"
         android:textSize="25sp"
         android:gravity="center"
         android:layout_margin="15dp"
@@ -142,5 +142,4 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="15dp"
         tools:ignore="MissingConstraints"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

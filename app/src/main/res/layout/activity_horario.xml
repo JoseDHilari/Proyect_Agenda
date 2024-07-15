@@ -20,15 +20,16 @@
             android:columnCount="2"
             android:rowCount="2">
 
-            <Spinner
-                android:id="@+id/HorarioDay"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/Manteca" />
+            <Button
+                android:id="@+id/datePickerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/Manteca"
+                android:text="Seleccionar fecha"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"/>
 
             <TextView
-                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -37,40 +38,24 @@
                 android:textColor="@color/Azul"
                 android:textSize="20sp"
                 android:textStyle="italic|bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.75"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.05"
+                android:layout_marginStart="40dp"
                 tools:ignore="SmallSp" />
 
-            <Spinner
-                android:id="@+id/HorarioMonth"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:background="@color/Manteca"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.13"
-                android:layout_marginEnd="20dp"/>
-
-            <Spinner
-                android:id="@+id/HorarioYear"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:background="@color/Manteca"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.75"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.13" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="00/00/0000"
+                android:textAllCaps="true"
+                android:textColor="@color/Azul"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                tools:ignore="SmallSp" />
         </GridLayout>
     </FrameLayout>
+
 
     <FrameLayout
         android:layout_width="match_parent"

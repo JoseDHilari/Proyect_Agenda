@@ -8,7 +8,7 @@
     tools:context=".CalendarioActivity"
     android:background="@drawable/degradado">
     <TextView
-        android:id="@+id/CourseName"
+        android:id="@+id/Mes"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:text="Mes"

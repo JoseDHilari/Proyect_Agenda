@@ -2,6 +2,7 @@ package hilari.abarca.my_first_apk
 
 import android.os.Bundle
 import android.content.Intent
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
@@ -32,6 +33,10 @@ class MenuActivity : AppCompatActivity() {
         }
         findViewById<LinearLayout>(R.id.Archivos).setOnClickListener {
             val intent = Intent(this, ArchivosActivity::class.java)
+            startActivity(intent)
+        }
+        findViewById<Button>(R.id.bt_NuevaHora).setOnClickListener {
+            val intent = Intent(this, AgregarNuevaHoraActivity::class.java)
             startActivity(intent)
         }
     }

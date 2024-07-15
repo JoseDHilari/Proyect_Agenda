@@ -1,79 +1,92 @@
 package hilari.abarca.my_first_apk
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hilari.abarca.my_first_apk.Adapters.ListaCursosAdapter
 import hilari.abarca.my_first_apk.Models.CursosModel
+import java.util.Calendar
 
 class HorarioActivity : AppCompatActivity() {
+
+    private lateinit var datePickerButton: Button
+    private lateinit var selectedDateText: TextView
+    private lateinit var cursosAdaptador: ListaCursosAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_horario)
 
-        val CursosAdaptador = ListaCursosAdapter()
+        datePickerButton = findViewById(R.id.datePickerButton)
+        selectedDateText = findViewById(R.id.textView)
+
+        datePickerButton.setOnClickListener {
+            showDatePickerDialog()
+        }
+
+        cursosAdaptador = ListaCursosAdapter()
         val rv = findViewById<RecyclerView>(R.id.rv_Curso)
         rv.apply {
-            adapter = CursosAdaptador
+            adapter = cursosAdaptador
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
         }
 
-        val ListaCursos : MutableList<CursosModel> = mutableListOf()
+        val listaCursos: MutableList<CursosModel> = mutableListOf()
 
-        ListaCursos.add(CursosModel("7:00","9:00","Primer Curso",true))
-        ListaCursos.add(CursosModel("9:00","11:00","Segundo Curso",true))
-        ListaCursos.add(CursosModel("11:00","13:00","Primer Curso",true))
-        ListaCursos.add(CursosModel("13:00","15:00","Segundo Curso",true))
-        ListaCursos.add(CursosModel("15:00","17:00","Tercer Curso",true))
-        ListaCursos.add(CursosModel("17:00","19:00","Primer Curso",true))
-        ListaCursos.add(CursosModel("19:00","21:00","Segundo Curso",true))
-        ListaCursos.add(CursosModel("21:00","23:00","Tercer Curso",true))
+        listaCursos.add(CursosModel("7:00", "9:00", "Primer Curso", true))
+        listaCursos.add(CursosModel("9:00", "11:00", "Segundo Curso", true))
+        listaCursos.add(CursosModel("11:00", "13:00", "Primer Curso", true))
+        listaCursos.add(CursosModel("13:00", "15:00", "Segundo Curso", true))
+        listaCursos.add(CursosModel("15:00", "17:00", "Tercer Curso", true))
+        listaCursos.add(CursosModel("17:00", "19:00", "Primer Curso", true))
+        listaCursos.add(CursosModel("19:00", "21:00", "Segundo Curso", true))
+        listaCursos.add(CursosModel("21:00", "23:00", "Tercer Curso", true))
 
-        CursosAdaptador.actualizarLista(ListaCursos)
-
-
-
-        // Obtener referencias a los Spinners
-        val spinnerDay = findViewById<Spinner>(R.id.HorarioDay)
-        val spinnerMonth = findViewById<Spinner>(R.id.HorarioMonth)
-        val spinnerYear = findViewById<Spinner>(R.id.HorarioYear)
-
-        // Configurar adaptadores para los Spinners
-        val days = (1..31).map { it.toString() }
-        val months = listOf("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
-        val years = (2023..2024).map { it.toString() }
-
-        val dayAdapter = ArrayAdapter(this, R.layout.spinner_item, days)
-        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerDay.adapter = dayAdapter
-
-        val monthAdapter = ArrayAdapter(this, R.layout.spinner_item, months)
-        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerMonth.adapter = monthAdapter
-
-        val yearAdapter = ArrayAdapter(this, R.layout.spinner_item, years)
-        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerYear.adapter = yearAdapter
+        cursosAdaptador.actualizarLista(listaCursos)
 
         findViewById<ImageButton>(R.id.NewCourse).setOnClickListener {
-            val intent = Intent(this,AgregarCursoActivity::class.java)
+            val intent = Intent(this, AgregarCursoActivity::class.java)
             startActivity(intent)
         }
+
         findViewById<ImageButton>(R.id.ViewCalendario).setOnClickListener {
-            val intent = Intent(this,CalendarioActivity::class.java)
+            val intent = Intent(this, CalendarioActivity::class.java)
             startActivity(intent)
         }
-
-
-
-
     }
 
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                selectedDateText.text = selectedDate
+                // Aquí puedes filtrar los cursos basándote en la fecha seleccionada
+                //filterCoursesByDate(selectedDay, selectedMonth + 1, selectedYear)
+            },
+            year,
+            month,
+            day
+        )
+        datePickerDialog.show()
+    }
+
+    private fun filterCoursesByDate(day: Int, month: Int, year: Int) {
+        // Implementa la lógica para filtrar los cursos basándote en la fecha
+        // y actualiza la lista de cursos mostrada en el RecyclerView
+    }
 }

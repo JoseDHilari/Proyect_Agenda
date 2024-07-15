@@ -13,6 +13,12 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".AgregarNuevaHoraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddHourActivity"
+            android:exported="false" />
+        <activity
             android:name=".CalendarioActivity"
             android:exported="false" />
         <activity
@@ -62,7 +68,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>

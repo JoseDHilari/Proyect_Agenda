@@ -33,6 +33,7 @@ class ArchivosActivity : AppCompatActivity() {
         }
         findViewById<ImageButton>(R.id.NewArchivo).setOnClickListener {
             val intent = Intent(this, AgregarArchivoActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
     }

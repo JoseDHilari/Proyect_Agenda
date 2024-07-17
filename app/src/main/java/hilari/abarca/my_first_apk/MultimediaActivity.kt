@@ -33,10 +33,12 @@ class MultimediaActivity : AppCompatActivity() {
         }
         findViewById<ImageButton>(R.id.NewMultimedia).setOnClickListener {
             val intent = Intent(this, AgregarMultimediaActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
         findViewById<ImageButton>(R.id.TomarFoto).setOnClickListener {
             val intent = Intent(this, AgregarFotoActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
     }

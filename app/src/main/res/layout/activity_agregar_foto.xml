@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:text="Nombre del curso"
         android:background="@color/Manteca"
-        android:textColorHint="@color/Plomo"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:gravity="center"
         android:layout_margin="15dp"

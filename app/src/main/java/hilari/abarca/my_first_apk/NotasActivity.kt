@@ -32,6 +32,7 @@ class NotasActivity : AppCompatActivity() {
         }
         findViewById<ImageButton>(R.id.NewNota).setOnClickListener {
             val intent = Intent(this, AgregarNotasActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
     }

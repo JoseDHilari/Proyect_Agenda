@@ -30,6 +30,7 @@ class RecordatorioActivity : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.NewRecordatorio).setOnClickListener {
             val intent = Intent(this, AgregarRecordatorioActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
         findViewById<ImageButton>(R.id.back).setOnClickListener {

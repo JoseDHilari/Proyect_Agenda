@@ -38,7 +38,7 @@
                 android:textColor="@color/Azul"
                 android:textSize="20sp"
                 android:textStyle="italic|bold"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="10dp"
                 tools:ignore="SmallSp" />
 
             <TextView

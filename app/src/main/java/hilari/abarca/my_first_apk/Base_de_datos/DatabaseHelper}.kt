@@ -41,7 +41,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
     }
 
-    fun insertDay(idCurso: Long, dia: String, horaInicio: String, horaFinal: String): Long {
+    fun insertDay(idCurso: Int, dia: String, horaInicio: String, horaFinal: String): Long {
         val db = writableDatabase
         val diaValues = ContentValues().apply {
 //            put("idDia",)

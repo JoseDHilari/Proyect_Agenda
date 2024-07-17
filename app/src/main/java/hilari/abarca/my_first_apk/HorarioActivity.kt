@@ -46,9 +46,9 @@ class HorarioActivity : AppCompatActivity() {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
         }
-
-        val listaCursos: MutableList<CursosModel> = mutableListOf()
 /*
+        val listaCursos: MutableList<CursosModel> = mutableListOf()
+
         listaCursos.add(CursosModel("7:00", "9:00", "Primer Curso", true))
         listaCursos.add(CursosModel("9:00", "11:00", "Segundo Curso", true))
         listaCursos.add(CursosModel("11:00", "13:00", "Primer Curso", true))

@@ -1,13 +1,14 @@
 package hilari.abarca.my_first_apk
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.TimePicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import hilari.abarca.my_first_apk.Base_de_datos.DatabaseHelper
 
@@ -21,8 +22,14 @@ class AgregarNuevaHoraActivity : AppCompatActivity() {
 
         dbHelper = DatabaseHelper(this)
 
-        val courseName = intent.getStringExtra("courseName")
-        findViewById<TextView>(R.id.CourseName).text = courseName
+        val idCurso = intent.getIntExtra("idCurso", -1)
+        val NombreCurso = findViewById<TextView>(R.id.CourseName)
+
+        if (idCurso != -1) {
+            val Nombre = dbHelper.ObtenerNombreCurso(idCurso)
+            NombreCurso.text = "$Nombre"
+        }
+
 
         val spinnerDay = findViewById<Spinner>(R.id.Day)
         val days = listOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
@@ -35,16 +42,13 @@ class AgregarNuevaHoraActivity : AppCompatActivity() {
         }
 
         findViewById<ImageButton>(R.id.FinishNewCourse).setOnClickListener {
-            saveDataToDatabase(courseName!!)
+            saveDataToDatabase(idCurso)
             finish()
-            val intent = Intent(this, MenuActivity::class.java)
-            startActivity(intent)
         }
     }
 
-    private fun saveDataToDatabase(courseName: String) {
-        val db = dbHelper.writableDatabase
-
+    private fun saveDataToDatabase(idCurso:Int) {
+        val CourseId = idCurso
         val spinnerDay = findViewById<Spinner>(R.id.Day)
         val selectedDay = spinnerDay.selectedItem.toString()
         val startHourPicker = findViewById<TimePicker>(R.id.StartHour)
@@ -53,27 +57,15 @@ class AgregarNuevaHoraActivity : AppCompatActivity() {
         val startHour = "${startHourPicker.hour}:${startHourPicker.minute}"
         val endHour = "${endHourPicker.hour}:${endHourPicker.minute}"
 
-        val courseIdCursor = db.query(
-            "Curso",
-            arrayOf("id"),
-            "Nombre = ?",
-            arrayOf(courseName),
-            null,
-            null,
-            null
-        )
-
-        if (courseIdCursor.moveToFirst()) {
-            val courseId = courseIdCursor.getInt(courseIdCursor.getColumnIndexOrThrow("id"))
-            val diaValues = ContentValues().apply {
-                put("idCurso", courseId)
-                put("Dia", selectedDay)
-                put("Hora_Inicio", startHour)
-                put("Hora_Final", endHour)
+        try {
+            val newDiaId = dbHelper.insertDay(CourseId, selectedDay, startHour, endHour)
+            if (newDiaId != -1L) {
+                Toast.makeText(this, "Nuevo dia guardado exitosamente", Toast.LENGTH_LONG).show()
             }
-            db.insert("Dias", null, diaValues)
-        }
-        courseIdCursor.close()
 
+        } catch (e: Exception) {
+            Log.e("AgregarCursoActivity", "Error saving data to database", e)
+            Toast.makeText(this, "Error al guardar los datos: ${e.message}", Toast.LENGTH_LONG).show()
+        }
     }
 }

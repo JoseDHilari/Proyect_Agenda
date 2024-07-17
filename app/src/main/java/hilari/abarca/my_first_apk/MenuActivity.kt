@@ -34,22 +34,27 @@ class MenuActivity : AppCompatActivity() {
         }
         findViewById<LinearLayout>(R.id.Recordatorios).setOnClickListener {
             val intent = Intent(this, RecordatorioActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
         findViewById<LinearLayout>(R.id.Notas).setOnClickListener {
             val intent = Intent(this, NotasActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
         findViewById<LinearLayout>(R.id.Multimedia).setOnClickListener {
             val intent = Intent(this, MultimediaActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
         findViewById<LinearLayout>(R.id.Archivos).setOnClickListener {
             val intent = Intent(this, ArchivosActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
         findViewById<Button>(R.id.bt_NuevaHora).setOnClickListener {
             val intent = Intent(this, AgregarNuevaHoraActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
     }

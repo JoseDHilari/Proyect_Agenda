@@ -44,7 +44,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     fun insertDay(idCurso: Int, dia: String, horaInicio: String, horaFinal: String): Long {
         val db = writableDatabase
         val diaValues = ContentValues().apply {
-//            put("idDia",)
             put("idCurso", idCurso)
             put("Dia", dia)
             put("Hora_Inicio", horaInicio)
@@ -53,7 +52,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return db.insert("Dias", null, diaValues)
     }
 
-    fun ListarCuros():List<CursosModel>{
+    fun ListarCursos():List<CursosModel>{
         val cursos = mutableListOf<CursosModel>()
         val db = this.readableDatabase
         val cursor = db.rawQuery("SELECT A.Hora_Inicio,A.Hora_Final,B.Nombre,A.idCurso FROM $TABLE_DIAS AS A INNER JOIN $TABLE_CURSO AS B ON A.idCurso = B.idCurso", null)
@@ -88,11 +87,14 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
 
     companion object {
-        private const val DATABASE_NAME = "Agenda222.db"
+        private const val DATABASE_NAME = "Agenda1.db"
         private const val DATABASE_VERSION = 1
         private const val TABLE_DIAS = "dias"
         private const val TABLE_CURSO = "curso"
-
+        private const val TABLE_ALARMA = "alarma"
+        private const val TABLE_NOTAS = "notas"
+        private const val TABLE_MULTIMEDIA = "multimedia"
+        private const val TABLE_ARCHIVOS = "archivos"
 
         private const val CREATE_TABLE_CURSO = """
             CREATE TABLE Curso (

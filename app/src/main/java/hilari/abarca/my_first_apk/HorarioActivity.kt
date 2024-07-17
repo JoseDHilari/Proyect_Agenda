@@ -59,8 +59,8 @@ class HorarioActivity : AppCompatActivity() {
         listaCursos.add(CursosModel("21:00", "23:00", "Tercer Curso", true))
 */
         try {
-            var listaCursos2 = dbHelper.ListarCuros()
-            Log.i("Jose",dbHelper.ListarCuros().toString())
+            var listaCursos2 = dbHelper.ListarCursos()
+            Log.i("Jose",dbHelper.ListarCursos().toString())
             cursosAdaptador.actualizarLista(listaCursos2)
 
         }

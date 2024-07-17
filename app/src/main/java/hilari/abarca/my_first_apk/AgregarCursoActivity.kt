@@ -25,14 +25,6 @@ class AgregarCursoActivity : AppCompatActivity() {
         dbHelper = DatabaseHelper(this)
        //dbHelper.onUpgrade(null,1,2)
 
-        val idCurso = intent.getIntExtra("idCurso", -1)
-        val NombreCurso = findViewById<TextView>(R.id.CourseName)
-
-        if (idCurso != -1) {
-            val Nombre = dbHelper.ObtenerNombreCurso(idCurso)
-            NombreCurso.text = "$Nombre"
-        }
-
         val spinnerDay = findViewById<Spinner>(R.id.Day)
 
         val days = listOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
@@ -57,26 +49,33 @@ class AgregarCursoActivity : AppCompatActivity() {
         }
 
         findViewById<ImageButton>(R.id.FinishNewCourse).setOnClickListener {
-            saveDataToDatabase(idCurso)
+            saveDataToDatabase()
             val intent = Intent(this, HorarioActivity::class.java)
             startActivity(intent)
         }
     }
 
-    private fun saveDataToDatabase(idCurso:Int) {
-        val CourseId = idCurso
+    private fun saveDataToDatabase() {
+        val courseName = findViewById<TextView>(R.id.CourseName).text.toString()
         val spinnerDay = findViewById<Spinner>(R.id.Day)
         val selectedDay = spinnerDay.selectedItem.toString()
         val startHourPicker = findViewById<TimePicker>(R.id.StartHour)
         val endHourPicker = findViewById<TimePicker>(R.id.EndHour)
-
         val startHour = "${startHourPicker.hour}:${startHourPicker.minute}"
         val endHour = "${endHourPicker.hour}:${endHourPicker.minute}"
-
         try {
-            val newDiaId = dbHelper.insertDay(CourseId, selectedDay, startHour, endHour)
-            if (newDiaId != -1L) {
-                Toast.makeText(this, "Nuevo día guardado exitosamente", Toast.LENGTH_LONG).show()
+            val newCourseId = dbHelper.insertCourse(courseName)
+            if (newCourseId != -1L) {
+                val newDiaId = dbHelper.insertDay(newCourseId.toInt(), selectedDay, startHour, endHour)
+                if (newDiaId != -1L) {
+                    Toast.makeText(this, "Curso y días guardados exitosamente", Toast.LENGTH_LONG).show()
+                } else {
+                    throw Exception("Error inserting into Dias table")
+                    //throw Exception("Error inserting into Dias table")
+                }
+            } else {
+                throw Exception("Error inserting into Curso table")
+                //throw Exception("Error inserting into Curso table")
             }
         } catch (e: Exception) {
             Log.e("AgregarCursoActivity", "Error saving data to database", e)

@@ -19,8 +19,7 @@ class AgregarRecordatorioActivity : AppCompatActivity() {
             startActivity(intent)
         }
         findViewById<ImageButton>(R.id.CancelRecordatorio).setOnClickListener {
-            val intent = Intent(this, RecordatorioActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

@@ -14,8 +14,7 @@ class CalendarioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendario)
         findViewById<ImageButton>(R.id.back).setOnClickListener {
-            val intent = Intent(this,HorarioActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

@@ -17,8 +17,7 @@ class AgregarMultimediaActivity : AppCompatActivity() {
             startActivity(intent)
         }
         findViewById<ImageButton>(R.id.FinishMultimedia).setOnClickListener {
-            val intent = Intent(this, MultimediaActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

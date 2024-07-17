@@ -18,8 +18,7 @@ class AgregarArchivoActivity : AppCompatActivity() {
             startActivity(intent)
         }
         findViewById<ImageButton>(R.id.CancelArchivo).setOnClickListener {
-            val intent = Intent(this, ArchivosActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

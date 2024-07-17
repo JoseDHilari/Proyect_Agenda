@@ -71,6 +71,20 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         cursor.close()
         return cursos
     }
+    fun ObtenerNombreCurso(id: Int): String? {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT Nombre FROM $TABLE_CURSO WHERE idCurso = ?", arrayOf(id.toString()))
+
+        var nombreCurso: String? = null
+
+        if (cursor.moveToFirst()) {
+            nombreCurso = cursor.getString(cursor.getColumnIndexOrThrow("Nombre"))
+        }
+
+        cursor.close()
+        return nombreCurso
+    }
+
 
 
     companion object {

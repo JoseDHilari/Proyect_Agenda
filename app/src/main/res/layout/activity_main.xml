@@ -103,6 +103,9 @@
         android:background="@color/Manteca"
         android:inputType="text"
         android:hint="Usuario"
+
+        android:text="dh"
+
         android:textColorHint="@color/Plomo"
         android:paddingStart="5dp"
         android:textColor="@color/black"
@@ -120,6 +123,9 @@
         android:background="@color/Manteca"
         android:inputType="textPassword"
         android:hint="Contraseña"
+
+        android:text="123"
+
         android:textColorHint="@color/Plomo"
         android:paddingStart="5dp"
         android:textColor="@color/black"

@@ -17,8 +17,7 @@ class AgregarFotoActivity : AppCompatActivity() {
             startActivity(intent)
         }
         findViewById<ImageButton>(R.id.CancelFoto).setOnClickListener {
-            val intent = Intent(this, MultimediaActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

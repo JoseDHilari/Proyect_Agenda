@@ -32,7 +32,6 @@ class ListaCursosAdapter:RecyclerView.Adapter<ListaCursosAdapter.ViewHolder>() {
         fun setValues(model: CursosModel){
             tv_Hora.setText(model.HoraInicio.toString() + " - " + model.HoraFinal.toString())
             tv_NombreCurso.setText(model.NombreCurso.toString())
-
         }
     }
 
@@ -49,8 +48,11 @@ class ListaCursosAdapter:RecyclerView.Adapter<ListaCursosAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setValues(lstCursos[position])
         holder.ll_elemento.setOnClickListener {
-            Toast.makeText(context, "Ayudaaaa Ingeniero Aceituno", Toast.LENGTH_SHORT).show()
+
+            val Curso = lstCursos[position]
+
             val intent = Intent(context, MenuActivity::class.java)
+            intent.putExtra("idCurso",Curso.idCurso)
             context!!.startActivity(intent)
         }
     }

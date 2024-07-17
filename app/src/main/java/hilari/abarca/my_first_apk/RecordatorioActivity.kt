@@ -18,8 +18,7 @@ class RecordatorioActivity : AppCompatActivity() {
             startActivity(intent)
         }
         findViewById<ImageButton>(R.id.back).setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 

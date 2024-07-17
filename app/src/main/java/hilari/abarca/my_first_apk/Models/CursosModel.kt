@@ -5,5 +5,5 @@ data class CursosModel(
     val HoraFinal:String,
     val NombreCurso:String,
     val Alarma:Boolean,
-    val idCurso:Int = System.currentTimeMillis().hashCode()
+    val idCurso:Int
 )

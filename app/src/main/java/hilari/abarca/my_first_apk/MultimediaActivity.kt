@@ -13,8 +13,7 @@ class MultimediaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_multimedia)
         findViewById<ImageButton>(R.id.back).setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
-            startActivity(intent)
+            finish()
         }
         findViewById<ImageButton>(R.id.NewMultimedia).setOnClickListener {
             val intent = Intent(this, AgregarMultimediaActivity::class.java)

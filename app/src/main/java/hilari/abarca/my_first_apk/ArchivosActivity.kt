@@ -13,8 +13,7 @@ class ArchivosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_archivos)
         findViewById<ImageButton>(R.id.back).setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
-            startActivity(intent)
+            finish()
         }
         findViewById<ImageButton>(R.id.NewArchivo).setOnClickListener {
             val intent = Intent(this, AgregarArchivoActivity::class.java)

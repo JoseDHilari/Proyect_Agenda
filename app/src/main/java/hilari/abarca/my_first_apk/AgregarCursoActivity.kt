@@ -45,8 +45,7 @@ class AgregarCursoActivity : AppCompatActivity() {
         }
 
         findViewById<ImageButton>(R.id.CancelNewCourse).setOnClickListener {
-            val intent = Intent(this, HorarioActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         findViewById<ImageButton>(R.id.FinishNewCourse).setOnClickListener {

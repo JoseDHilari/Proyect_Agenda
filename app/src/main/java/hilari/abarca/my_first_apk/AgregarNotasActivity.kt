@@ -17,8 +17,7 @@ class AgregarNotasActivity : AppCompatActivity() {
             startActivity(intent)
         }
         findViewById<ImageButton>(R.id.CancelNota).setOnClickListener {
-            val intent = Intent(this, NotasActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

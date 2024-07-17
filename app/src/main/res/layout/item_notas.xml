@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:padding="4dp">
+    <LinearLayout
+        android:id="@+id/ll_elemento"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/Azul"
+            />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="150dp"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Azul"
+                />
+            <TextView
+                android:id="@+id/NotaDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:hint="   Nota 1"
+                android:textColor="@color/black"
+                android:padding="5dp"
+                android:background="@color/Manteca"
+                />
+            <TextView
+                android:id="@+id/NotaName"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="   Nota"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:background="@color/Azul"
+                android:paddingHorizontal="5dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Azul"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/Azul"
+            />
+    </LinearLayout>
+</FrameLayout>

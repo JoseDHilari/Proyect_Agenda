@@ -63,19 +63,17 @@ class AgregarCursoActivity : AppCompatActivity() {
         val endHourPicker = findViewById<TimePicker>(R.id.EndHour)
         val startHour = "${startHourPicker.hour}:${startHourPicker.minute}"
         val endHour = "${endHourPicker.hour}:${endHourPicker.minute}"
+
         try {
+            if (courseName.isBlank()) throw IllegalArgumentException("El nombre del curso no puede estar vacío")
+            if (selectedDay.isBlank()) throw IllegalArgumentException("Debe seleccionar un día")
+
             val newCourseId = dbHelper.insertCourse(courseName)
             if (newCourseId != -1L) {
                 val newDiaId = dbHelper.insertDay(newCourseId.toInt(), selectedDay, startHour, endHour)
                 if (newDiaId != -1L) {
                     Toast.makeText(this, "Curso y días guardados exitosamente", Toast.LENGTH_LONG).show()
-                } else {
-                    throw Exception("Error inserting into Dias table")
-                    //throw Exception("Error inserting into Dias table")
                 }
-            } else {
-                throw Exception("Error inserting into Curso table")
-                //throw Exception("Error inserting into Curso table")
             }
         } catch (e: Exception) {
             Log.e("AgregarCursoActivity", "Error saving data to database", e)

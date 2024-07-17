@@ -52,11 +52,12 @@ class AgregarNuevaHoraActivity : AppCompatActivity() {
         val selectedDay = spinnerDay.selectedItem.toString()
         val startHourPicker = findViewById<TimePicker>(R.id.StartHour)
         val endHourPicker = findViewById<TimePicker>(R.id.EndHour)
-
         val startHour = "${startHourPicker.hour}:${startHourPicker.minute}"
         val endHour = "${endHourPicker.hour}:${endHourPicker.minute}"
 
         try {
+            if (selectedDay.isBlank()) throw IllegalArgumentException("Debe seleccionar un día")
+
             val newDiaId = dbHelper.insertDay(CourseId, selectedDay, startHour, endHour)
             if (newDiaId != -1L) {
                 Toast.makeText(this, "Nuevo dia guardado exitosamente", Toast.LENGTH_LONG).show()

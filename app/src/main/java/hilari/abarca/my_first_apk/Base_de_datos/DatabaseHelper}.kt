@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import hilari.abarca.my_first_apk.Models.CursosModel
+import hilari.abarca.my_first_apk.Models.NotaModel
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -52,6 +53,16 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return db.insert("Dias", null, diaValues)
     }
 
+    fun insertarNota(idCurso: Int, titulo: String, descripcion: String): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("idCurso", idCurso)
+            put("Titulo", titulo)
+            put("Descripcion", descripcion)
+        }
+        return db.insert("Notas", null, values)
+    }
+
     fun ListarCursos():List<CursosModel>{
         val cursos = mutableListOf<CursosModel>()
         val db = this.readableDatabase
@@ -70,6 +81,24 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         cursor.close()
         return cursos
     }
+
+    fun ListarNotas(Curso: Int): List<NotaModel> {
+        val notas = mutableListOf<NotaModel>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT Titulo, Descripcion, idNotas FROM $TABLE_NOTAS WHERE idCurso = ?", arrayOf(Curso.toString()))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("Titulo"))
+                val descripcion = cursor.getString(cursor.getColumnIndexOrThrow("Descripcion"))
+                val idNota = cursor.getInt(cursor.getColumnIndexOrThrow("idNotas"))
+
+                notas.add(NotaModel(nombre, descripcion, idNota))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return notas
+    }
     fun ObtenerNombreCurso(id: Int): String? {
         val db = this.readableDatabase
         val cursor = db.rawQuery("SELECT Nombre FROM $TABLE_CURSO WHERE idCurso = ?", arrayOf(id.toString()))
@@ -83,8 +112,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         cursor.close()
         return nombreCurso
     }
-
-
 
     companion object {
         private const val DATABASE_NAME = "Agenda1.db"

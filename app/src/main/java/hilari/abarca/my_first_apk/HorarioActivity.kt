@@ -1,8 +1,10 @@
 package hilari.abarca.my_first_apk
 
 import android.app.DatePickerDialog
+import android.app.job.JobService
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
@@ -12,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hilari.abarca.my_first_apk.Adapters.ListaCursosAdapter
+import hilari.abarca.my_first_apk.Base_de_datos.DatabaseHelper
 import hilari.abarca.my_first_apk.Models.CursosModel
 import java.util.Calendar
 
@@ -20,11 +23,15 @@ class HorarioActivity : AppCompatActivity() {
     private lateinit var datePickerButton: Button
     private lateinit var selectedDateText: TextView
     private lateinit var cursosAdaptador: ListaCursosAdapter
+    private lateinit var dbHelper: DatabaseHelper
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_horario)
 
+        dbHelper = DatabaseHelper(this)
         datePickerButton = findViewById(R.id.datePickerButton)
         selectedDateText = findViewById(R.id.textView)
 
@@ -41,7 +48,7 @@ class HorarioActivity : AppCompatActivity() {
         }
 
         val listaCursos: MutableList<CursosModel> = mutableListOf()
-
+/*
         listaCursos.add(CursosModel("7:00", "9:00", "Primer Curso", true))
         listaCursos.add(CursosModel("9:00", "11:00", "Segundo Curso", true))
         listaCursos.add(CursosModel("11:00", "13:00", "Primer Curso", true))
@@ -50,8 +57,18 @@ class HorarioActivity : AppCompatActivity() {
         listaCursos.add(CursosModel("17:00", "19:00", "Primer Curso", true))
         listaCursos.add(CursosModel("19:00", "21:00", "Segundo Curso", true))
         listaCursos.add(CursosModel("21:00", "23:00", "Tercer Curso", true))
+*/
+        try {
+            var listaCursos2 = dbHelper.ListarCuros()
+            Log.i("Jose",dbHelper.ListarCuros().toString())
+            cursosAdaptador.actualizarLista(listaCursos2)
 
-        cursosAdaptador.actualizarLista(listaCursos)
+        }
+        catch (e:Exception){
+            Log.i("Jose",e.toString())
+        }
+
+        //cursosAdaptador.actualizarLista(listaCursos)
 
         findViewById<ImageButton>(R.id.NewCourse).setOnClickListener {
             val intent = Intent(this, AgregarCursoActivity::class.java)

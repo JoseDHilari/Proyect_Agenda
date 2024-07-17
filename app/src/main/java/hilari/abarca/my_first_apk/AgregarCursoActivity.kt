@@ -73,10 +73,10 @@ class AgregarCursoActivity : AppCompatActivity() {
                 if (newDiaId != -1L) {
                     Toast.makeText(this, "Curso y días guardados exitosamente", Toast.LENGTH_LONG).show()
                 } else {
-                    throw Exception("Error inserting into Dias table")
+                    //throw Exception("Error inserting into Dias table")
                 }
             } else {
-                throw Exception("Error inserting into Curso table")
+                //throw Exception("Error inserting into Curso table")
             }
         } catch (e: Exception) {
             Log.e("AgregarCursoActivity", "Error saving data to database", e)

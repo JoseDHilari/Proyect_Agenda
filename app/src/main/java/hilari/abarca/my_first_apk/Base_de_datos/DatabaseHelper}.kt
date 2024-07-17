@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import hilari.abarca.my_first_apk.Models.CursosModel
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -43,7 +44,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     fun insertDay(idCurso: Long, dia: String, horaInicio: String, horaFinal: String): Long {
         val db = writableDatabase
         val diaValues = ContentValues().apply {
-            put("idDia",1000)
+//            put("idDia",)
             put("idCurso", idCurso)
             put("Dia", dia)
             put("Hora_Inicio", horaInicio)
@@ -52,10 +53,32 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return db.insert("Dias", null, diaValues)
     }
 
+    fun ListarCuros():List<CursosModel>{
+        val cursos = mutableListOf<CursosModel>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT A.Hora_Inicio,A.Hora_Final,B.Nombre,A.idCurso FROM $TABLE_DIAS AS A INNER JOIN $TABLE_CURSO AS B ON A.idCurso = B.idCurso", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val Horainicio = cursor.getString(cursor.getColumnIndexOrThrow("Hora_Inicio"))
+                val Horafinal = cursor.getString(cursor.getColumnIndexOrThrow("Hora_Final"))
+                val NombreCurso = cursor.getString(cursor.getColumnIndexOrThrow("Nombre"))
+                val idCurso = cursor.getInt(cursor.getColumnIndexOrThrow("idCurso"))
+
+                cursos.add(CursosModel(Horainicio,Horafinal,NombreCurso,true,idCurso))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return cursos
+    }
+
 
     companion object {
         private const val DATABASE_NAME = "Agenda222.db"
         private const val DATABASE_VERSION = 1
+        private const val TABLE_DIAS = "dias"
+        private const val TABLE_CURSO = "curso"
+
 
         private const val CREATE_TABLE_CURSO = """
             CREATE TABLE Curso (

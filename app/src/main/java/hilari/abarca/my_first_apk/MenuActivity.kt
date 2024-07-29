@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import hilari.abarca.my_first_apk.Base_de_datos.DatabaseHelper
 
 class MenuActivity : AppCompatActivity() {
+
     private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {

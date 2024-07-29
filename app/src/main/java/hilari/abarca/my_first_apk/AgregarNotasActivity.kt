@@ -37,6 +37,7 @@ class AgregarNotasActivity : AppCompatActivity() {
         finishNotaButton.setOnClickListener {
             guardarNota()
             val intent = Intent(this,NotasActivity::class.java)
+            intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
     }

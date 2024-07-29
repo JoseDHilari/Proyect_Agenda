@@ -37,6 +37,13 @@
         android:layout_marginHorizontal="15dp"
         android:layout_marginBottom="130dp">
 
+        <ListView
+            android:id="@+id/pdfListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            />
+
 
     </FrameLayout>
 

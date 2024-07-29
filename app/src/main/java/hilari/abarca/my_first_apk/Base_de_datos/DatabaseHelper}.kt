@@ -63,6 +63,15 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         return db.insert("Notas", null, values)
     }
 
+    fun insertarArchivo(idCurso: Int, archivo: String) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("idCurso", idCurso)
+        contentValues.put("Archivo", archivo)
+        db.insert("Archivos", null, contentValues)
+        db.close()
+    }
+
     fun ListarCursos():List<CursosModel>{
         val cursos = mutableListOf<CursosModel>()
         val db = this.readableDatabase
@@ -85,20 +94,22 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     fun ListarNotas(Curso: Int): List<NotaModel> {
         val notas = mutableListOf<NotaModel>()
         val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT Titulo, Descripcion, idNotas FROM $TABLE_NOTAS WHERE idCurso = ?", arrayOf(Curso.toString()))
+        val cursor = db.rawQuery("SELECT Titulo, Descripcion, idNotas, idCurso FROM $TABLE_NOTAS WHERE idCurso = ?", arrayOf(Curso.toString()))
 
         if (cursor.moveToFirst()) {
             do {
                 val nombre = cursor.getString(cursor.getColumnIndexOrThrow("Titulo"))
                 val descripcion = cursor.getString(cursor.getColumnIndexOrThrow("Descripcion"))
                 val idNota = cursor.getInt(cursor.getColumnIndexOrThrow("idNotas"))
+                val idCurso = cursor.getInt(cursor.getColumnIndexOrThrow("idCurso"))
 
-                notas.add(NotaModel(nombre, descripcion, idNota))
+                notas.add(NotaModel(nombre, descripcion, idNota,idCurso))
             } while (cursor.moveToNext())
         }
         cursor.close()
         return notas
     }
+
     fun ObtenerNombreCurso(id: Int): String? {
         val db = this.readableDatabase
         val cursor = db.rawQuery("SELECT Nombre FROM $TABLE_CURSO WHERE idCurso = ?", arrayOf(id.toString()))
@@ -111,6 +122,46 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         cursor.close()
         return nombreCurso
+    }
+
+    fun ObtenerNombreNota(id: Int): String? {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT Titulo FROM $TABLE_NOTAS WHERE idNotas = ?", arrayOf(id.toString()))
+
+        var nombreNota: String? = null
+
+        if (cursor.moveToFirst()) {
+            nombreNota = cursor.getString(cursor.getColumnIndexOrThrow("Titulo"))
+        }
+
+        cursor.close()
+        return nombreNota
+    }
+
+    fun ObtenerNota(id: Int): String? {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT Descripcion FROM $TABLE_NOTAS WHERE idNotas = ?", arrayOf(id.toString()))
+
+        var Nota: String? = null
+
+        if (cursor.moveToFirst()) {
+            Nota = cursor.getString(cursor.getColumnIndexOrThrow("Descripcion"))
+        }
+
+        cursor.close()
+        return Nota
+    }
+
+    fun insertAlarma(idCurso: Int, hora: String, fecha: String, nombreActividad: String, activar: Int): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("idCurso", idCurso)
+            put("Hora", hora)
+            put("Fecha", fecha)
+            put("Nombre_Actividad", nombreActividad)
+            put("Activar", activar)
+        }
+        return db.insert("Alarma", null, values)
     }
 
     companion object {

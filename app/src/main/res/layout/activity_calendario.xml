@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="7dp"
         android:background="@color/Azul"
-        app:layout_constraintTop_toBottomOf="@id/CourseName"
+        app:layout_constraintTop_toBottomOf="@id/Mes"
         android:layout_marginTop="15dp"
         tools:ignore="MissingConstraints" />
 

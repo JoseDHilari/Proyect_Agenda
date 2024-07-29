@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import hilari.abarca.my_first_apk.Models.NotaModel
 import hilari.abarca.my_first_apk.R
+import hilari.abarca.my_first_apk.VerNotaActivity
 
 class ListaNotasAdapter:RecyclerView.Adapter<ListaNotasAdapter.ViewHolder>() {
 
@@ -39,14 +40,14 @@ class ListaNotasAdapter:RecyclerView.Adapter<ListaNotasAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setValues(lstNotas[position])
         holder.ll_elemento.setOnClickListener{
-/*
+
             val Nota = lstNotas[position]
 
             val intent = Intent(context,VerNotaActivity::class.java)
             intent.putExtra("idNota",Nota.idNota)
+            intent.putExtra("idCurso",Nota.idCurso)
             context!!.startActivity(intent)
 
- */
         }
     }
 

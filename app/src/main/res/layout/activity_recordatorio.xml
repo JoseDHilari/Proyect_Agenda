@@ -53,8 +53,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="100dp"/>
 
-    <ScrollView
-        android:id="@+id/RecordatorioView"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/Manteca"
@@ -64,17 +63,15 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="150dp"
-        android:layout_marginBottom="130dp">
-
-        <FrameLayout
-            android:id="@+id/DesRecordatorio"
+        android:layout_marginBottom="130dp"
+        android:padding="5dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recordatorios"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:background="@color/Amarillo_Fondo">
+            android:layout_height="wrap_content"
+            />
+    </FrameLayout>
 
-        </FrameLayout>
-    </ScrollView>
 
     <ImageButton
         android:id="@+id/NewRecordatorio"

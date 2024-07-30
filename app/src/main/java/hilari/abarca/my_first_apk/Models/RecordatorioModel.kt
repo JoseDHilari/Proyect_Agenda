@@ -4,5 +4,5 @@ data class RecordatorioModel(
     val Recordatorio:String,
     val Fecha:String,
     val Hora:String,
-    val Alarma:Boolean
+    val Alarma: Int
 )

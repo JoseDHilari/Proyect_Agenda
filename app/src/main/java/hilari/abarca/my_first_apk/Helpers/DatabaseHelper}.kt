@@ -1,4 +1,4 @@
-package hilari.abarca.my_first_apk.Base_de_datos
+package hilari.abarca.my_first_apk.Helpers
 
 import android.content.ContentValues
 import android.content.Context
@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import hilari.abarca.my_first_apk.Models.CursosModel
 import hilari.abarca.my_first_apk.Models.NotaModel
+import hilari.abarca.my_first_apk.Models.RecordatorioModel
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -108,6 +109,25 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
         cursor.close()
         return notas
+    }
+
+    fun ListarRecordatorios(Curso: Int): List<RecordatorioModel> {
+        val recordatorios = mutableListOf<RecordatorioModel>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT Nombre_Actividad, Fecha, Hora, Activar FROM $TABLE_ALARMA WHERE idCurso = ?", arrayOf(Curso.toString()))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("Nombre_Actividad"))
+                val fecha = cursor.getString(cursor.getColumnIndexOrThrow("Fecha"))
+                val hora = cursor.getString(cursor.getColumnIndexOrThrow("Hora"))
+                val activar = cursor.getInt(cursor.getColumnIndexOrThrow("Activar"))
+
+                recordatorios.add(RecordatorioModel(nombre, fecha, hora, activar))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return recordatorios
     }
 
     fun ObtenerNombreCurso(id: Int): String? {

@@ -5,14 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hilari.abarca.my_first_apk.Adapters.ListaNotasAdapter
-import hilari.abarca.my_first_apk.Base_de_datos.DatabaseHelper
+import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 
 class NotasActivity : AppCompatActivity() {
 

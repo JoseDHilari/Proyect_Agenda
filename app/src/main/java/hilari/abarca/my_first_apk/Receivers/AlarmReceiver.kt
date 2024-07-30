@@ -1,6 +1,5 @@
 package hilari.abarca.my_first_apk
 
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -13,7 +12,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
 class AlarmReceiver : BroadcastReceiver() {
-    @SuppressLint("MissingPermission")
     override fun onReceive(context: Context?, intent: Intent?) {
         val idAlarma = intent?.getIntExtra("idAlarma", -1) ?: -1
         val activityName = intent?.getStringExtra("activityName")

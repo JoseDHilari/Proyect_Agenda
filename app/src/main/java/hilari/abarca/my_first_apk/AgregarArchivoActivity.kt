@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import hilari.abarca.my_first_apk.Base_de_datos.DatabaseHelper
+import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 import java.io.File
 
 class AgregarArchivoActivity : AppCompatActivity() {

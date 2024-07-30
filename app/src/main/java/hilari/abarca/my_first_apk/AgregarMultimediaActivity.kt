@@ -1,18 +1,14 @@
 package hilari.abarca.my_first_apk
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import hilari.abarca.my_first_apk.Base_de_datos.DatabaseHelper
+import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 
 class AgregarMultimediaActivity : AppCompatActivity() {
 
-    private lateinit var dbHelper:DatabaseHelper
+    private lateinit var dbHelper: DatabaseHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agregar_multimedia)

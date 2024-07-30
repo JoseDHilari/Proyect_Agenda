@@ -7,7 +7,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import hilari.abarca.my_first_apk.Base_de_datos.DatabaseHelper
+import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 
 class AgregarNotasActivity : AppCompatActivity() {
 

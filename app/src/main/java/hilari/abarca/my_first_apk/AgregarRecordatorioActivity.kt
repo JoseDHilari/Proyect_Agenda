@@ -14,7 +14,7 @@ import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import hilari.abarca.my_first_apk.Base_de_datos.DatabaseHelper
+import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -51,7 +51,7 @@ class AgregarRecordatorioActivity : AppCompatActivity() {
     private fun setAlarm(idCurso: Int) {
         val datePicker = findViewById<CalendarView>(R.id.RecordatorioDate)
         val timePicker = findViewById<TimePicker>(R.id.RecordatorioHour)
-        val activityName = findViewById<EditText>(R.id.ActivityName).text.toString()
+        val activityName = findViewById<EditText>(R.id.AlarmaName).text.toString()
         val activateAlarm = findViewById<Switch>(R.id.BoolAlarma).isChecked
 
         val calendar = Calendar.getInstance().apply {

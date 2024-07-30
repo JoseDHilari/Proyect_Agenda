@@ -42,6 +42,28 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:padding="5dp"
+                android:background="@color/Celeste"
+                android:text="   Actividad:"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/AlarmaName"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:inputType="text"
+                android:textSize="20sp"
+                android:paddingLeft="10dp"
+                android:hint="Nombre de la Actividad"
+                android:background="@color/Manteca"
+                android:textColor="@color/black"
+                android:textColorHint="@color/Plomo"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:padding="5dp"
                 android:background="@color/Celeste"
                 android:text="   Fecha:"
@@ -72,27 +94,7 @@
                 android:numbersSelectorColor="@color/Azul"
                 android:headerBackground="@color/Azul"
                 android:timePickerMode="spinner"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:padding="5dp"
-                android:background="@color/Celeste"
-                android:text="   Actividad:"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
-            <EditText
-                android:id="@+id/ActivityName"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:inputType="text"
-                android:textSize="20sp"
-                android:paddingLeft="10dp"
-                android:hint="Nombre de la Actividad"
-                android:background="@color/Manteca"
-                android:textColor="@color/black"
-                android:textColorHint="@color/Plomo"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

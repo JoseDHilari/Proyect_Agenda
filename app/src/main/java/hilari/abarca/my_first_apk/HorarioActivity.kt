@@ -1,21 +1,17 @@
 package hilari.abarca.my_first_apk
 
 import android.app.DatePickerDialog
-import android.app.job.JobService
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hilari.abarca.my_first_apk.Adapters.ListaCursosAdapter
-import hilari.abarca.my_first_apk.Base_de_datos.DatabaseHelper
-import hilari.abarca.my_first_apk.Models.CursosModel
+import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 import java.util.Calendar
 
 class HorarioActivity : AppCompatActivity() {

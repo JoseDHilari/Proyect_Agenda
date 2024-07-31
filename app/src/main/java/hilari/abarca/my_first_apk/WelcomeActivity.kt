@@ -12,7 +12,7 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
         findViewById<Button>(R.id.Ingresar).setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, ValidacionActivity::class.java)
             startActivity(intent)
         }
     }

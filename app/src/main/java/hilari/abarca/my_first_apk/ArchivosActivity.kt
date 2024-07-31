@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 
@@ -29,9 +30,13 @@ class ArchivosActivity : AppCompatActivity() {
             finish()
         }
         findViewById<ImageButton>(R.id.NewArchivo).setOnClickListener {
+            Toast.makeText(this, "PROXIMAMENTE", Toast.LENGTH_SHORT).show()
+            /*
             val intent = Intent(this, AgregarArchivoActivity::class.java)
             intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
+            */
+
         }
     }
 }

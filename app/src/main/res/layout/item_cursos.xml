@@ -13,41 +13,41 @@
                 android:layout_height="1dp"
                 android:background="@color/Azul"
                 />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="98dp"
-                android:orientation="horizontal"
                 android:background="@color/Amarillo_Fondo"
-                >
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/Azul"
-                    />
+                    android:background="@color/Azul" />
 
                 <TextView
                     android:id="@+id/tv_Hora"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_weight="4"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="5"
                     android:text="7:00 - 9:00"
-                    android:layout_marginHorizontal="10dp"
                     android:textColor="@color/Azul"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/Azul"
-                    />
+                    android:background="@color/Azul" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="10"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_NombreCurso"
                         android:layout_width="wrap_content"
@@ -55,21 +55,22 @@
                         android:layout_margin="10dp"
                         android:text="Nombre del Curso"
                         android:textColor="@color/Azul"
-                        android:textStyle="bold"
                         android:textSize="20dp"
-                        />
+                        android:textStyle="bold" />
+
                     <ImageView
                         android:id="@+id/iv_Alarma"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/ic_alarma"/>
+                        android:src="@drawable/ic_alarma" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/Azul"
-                    />
+                    android:background="@color/Azul" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

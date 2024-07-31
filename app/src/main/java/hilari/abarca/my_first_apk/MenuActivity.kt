@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 
@@ -42,11 +43,13 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
         findViewById<LinearLayout>(R.id.Multimedia).setOnClickListener {
+            Toast.makeText(this, "PROXIMAMENTE", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MultimediaActivity::class.java)
             intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
         findViewById<LinearLayout>(R.id.Archivos).setOnClickListener {
+            Toast.makeText(this, "PROXIMAMENTE", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, ArchivosActivity::class.java)
             intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)

@@ -40,18 +40,7 @@ class HorarioActivity : AppCompatActivity() {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
         }
-/*
-        val listaCursos: MutableList<CursosModel> = mutableListOf()
 
-        listaCursos.add(CursosModel("7:00", "9:00", "Primer Curso", true))
-        listaCursos.add(CursosModel("9:00", "11:00", "Segundo Curso", true))
-        listaCursos.add(CursosModel("11:00", "13:00", "Primer Curso", true))
-        listaCursos.add(CursosModel("13:00", "15:00", "Segundo Curso", true))
-        listaCursos.add(CursosModel("15:00", "17:00", "Tercer Curso", true))
-        listaCursos.add(CursosModel("17:00", "19:00", "Primer Curso", true))
-        listaCursos.add(CursosModel("19:00", "21:00", "Segundo Curso", true))
-        listaCursos.add(CursosModel("21:00", "23:00", "Tercer Curso", true))
-*/
         try {
             var listaCursos2 = dbHelper.ListarCursos()
             Log.i("Jose",dbHelper.ListarCursos().toString())
@@ -95,9 +84,14 @@ class HorarioActivity : AppCompatActivity() {
         )
         datePickerDialog.show()
     }
-
+    /*
     private fun filterCoursesByDate(day: Int, month: Int, year: Int) {
-        // Implementa la lógica para filtrar los cursos basándote en la fecha
-        // y actualiza la lista de cursos mostrada en el RecyclerView
-    }
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month - 1, day)
+        val dayOfWeek = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())
+
+        val listaCursos = dbHelper.ListarCursosPorDia(dayOfWeek)
+        Log.i("HorarioActivity", "Lista de cursos filtrados: $listaCursos")
+        cursosAdaptador.actualizarLista(listaCursos)
+    }*/
 }

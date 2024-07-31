@@ -1,5 +1,6 @@
 package hilari.abarca.my_first_apk.Helpers
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

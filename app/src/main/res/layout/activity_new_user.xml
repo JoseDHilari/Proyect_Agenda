@@ -5,8 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/degradado"
-    tools:context=".MainActivity">
+    tools:context=".NewUserActivity"
+    android:background="@drawable/degradado">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -17,10 +18,11 @@
         android:textColor="@color/Azul"
         android:textStyle="italic|bold"
         android:textAllCaps="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintVertical_bias="0.45"
+        android:layout_marginTop="10sp"
         tools:ignore="SmallSp" />
 
     <ImageView
@@ -33,7 +35,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.15" />
 
     <View
         android:id="@+id/view"
@@ -84,12 +86,26 @@
         app:layout_constraintEnd_toEndOf="@id/view3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.9"
-        android:text="INGRESAR"
+        android:text="REGISTRAR"
         android:textSize="15dp"
         android:paddingStart="20dp"
         android:gravity="fill"
         android:backgroundTint="@color/Azul"
         android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="249dp"
+        android:layout_height="40dp"
+        android:text="Crea un nombre de usuario:"
+        android:background="@color/Azul"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/Usuario"
+        app:layout_constraintEnd_toStartOf="@id/view3"
+        android:layout_marginBottom="10dp"
+        />
 
     <EditText
         android:id="@+id/Usuario"
@@ -98,7 +114,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/view3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65"
+        app:layout_constraintVertical_bias="0.62"
         android:ems="12"
         android:background="@color/Manteca"
         android:inputType="text"
@@ -108,6 +124,20 @@
         android:textColor="@color/black"
         tools:ignore="MissingConstraints,RtlHardcoded,RtlSymmetry" />
 
+    <TextView
+        android:layout_width="249dp"
+        android:layout_height="40dp"
+        android:text="Crea una contraseña:"
+        android:background="@color/Azul"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/Password"
+        app:layout_constraintEnd_toStartOf="@id/view3"
+        android:layout_marginBottom="10dp"
+        />
+
     <EditText
         android:id="@+id/Password"
         android:layout_width="249dp"
@@ -115,7 +145,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/view3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintVertical_bias="0.8"
         android:ems="12"
         android:background="@color/Manteca"
         android:inputType="textPassword"
@@ -124,5 +154,4 @@
         android:paddingStart="5dp"
         android:textColor="@color/black"
         tools:ignore="MissingConstraints,RtlSymmetry" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

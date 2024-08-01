@@ -50,8 +50,8 @@ class AgregarCursoActivity : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.FinishNewCourse).setOnClickListener {
             saveDataToDatabase()
-            val intent = Intent(this, HorarioActivity::class.java)
-            startActivity(intent)
+            setResult(RESULT_OK) // Indica que el curso se agregó correctamente
+            finish()
         }
     }
 

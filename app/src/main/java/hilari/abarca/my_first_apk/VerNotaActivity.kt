@@ -2,6 +2,8 @@ package hilari.abarca.my_first_apk
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -11,10 +13,10 @@ import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 class VerNotaActivity : AppCompatActivity() {
 
     private lateinit var dbHelper: DatabaseHelper
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_ver_nota)
 
         dbHelper = DatabaseHelper(this)
@@ -24,9 +26,9 @@ class VerNotaActivity : AppCompatActivity() {
 
         val nombreCursoTextView = findViewById<TextView>(R.id.CourseName)
         val notaName = findViewById<TextView>(R.id.NotaName)
-        val notaText = findViewById<TextView>(R.id.NotaText)
+        val notaText = findViewById<EditText>(R.id.NotaText)
 
-        if (idCurso != -1){
+        if (idCurso != -1) {
             val nombreCurso = dbHelper.ObtenerNombreCurso(idCurso)
             nombreCursoTextView.text = nombreCurso
         }
@@ -34,7 +36,22 @@ class VerNotaActivity : AppCompatActivity() {
             val NotaTitle = dbHelper.ObtenerNombreNota(idNota)
             notaName.text = NotaTitle
             val Texto = dbHelper.ObtenerNota(idNota)
-            notaText.text = Texto
+            notaText.setText(Texto)
+        }
+
+        findViewById<Button>(R.id.GuardarNota).setOnClickListener {
+            if (idNota != -1) {
+                val updatedText = notaText.text.toString()
+                dbHelper.ActualizarNota(idNota, updatedText)
+                finish()
+            }
+        }
+
+        findViewById<Button>(R.id.EliminarNota).setOnClickListener {
+            if (idNota != -1) {
+                dbHelper.EliminarNota(idNota)
+                finish()
+            }
         }
 
         findViewById<ImageButton>(R.id.back).setOnClickListener {

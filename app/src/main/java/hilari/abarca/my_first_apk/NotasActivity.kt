@@ -1,5 +1,6 @@
 package hilari.abarca.my_first_apk
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -30,7 +31,6 @@ class NotasActivity : AppCompatActivity() {
             NombreCurso.text = "$Nombre"
         }
 
-
         notasAdaptador = ListaNotasAdapter()
         val rv = findViewById<RecyclerView>(R.id.rv_notas)
         rv.apply {
@@ -39,23 +39,37 @@ class NotasActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
-        try {
-            var listarNotas = dbHelper.ListarNotas(idCurso)
-            Log.i("Jose", dbHelper.ListarNotas(idCurso).toString())
-            notasAdaptador.actualizarLista(listarNotas)
-
-        }
-        catch (e:Exception){
-            Log.i("Jose",e.toString())
-        }
+        actualizarNotas(idCurso)
 
         findViewById<ImageButton>(R.id.back).setOnClickListener {
             finish()
         }
         findViewById<ImageButton>(R.id.NewNota).setOnClickListener {
             val intent = Intent(this, AgregarNotasActivity::class.java)
-            intent.putExtra("idCurso",idCurso.toInt())
-            startActivity(intent)
+            intent.putExtra("idCurso", idCurso)
+            startActivityForResult(intent, REQUEST_CODE_ADD_NOTA)
         }
+    }
+
+    private fun actualizarNotas(idCurso: Int) {
+        try {
+            val listarNotas = dbHelper.ListarNotas(idCurso)
+            Log.i("Jose", listarNotas.toString())
+            notasAdaptador.actualizarLista(listarNotas)
+        } catch (e: Exception) {
+            Log.i("Jose", e.toString())
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_ADD_NOTA && resultCode == Activity.RESULT_OK) {
+            val idCurso = intent.getIntExtra("idCurso", -1)
+            actualizarNotas(idCurso)
+        }
+    }
+
+    companion object {
+        const val REQUEST_CODE_ADD_NOTA = 1
     }
 }

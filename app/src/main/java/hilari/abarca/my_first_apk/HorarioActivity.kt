@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import hilari.abarca.my_first_apk.Adapters.ListaCursosAdapter
 import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 import java.util.Calendar
+import java.util.Locale
 
 class HorarioActivity : AppCompatActivity() {
 
@@ -20,6 +21,7 @@ class HorarioActivity : AppCompatActivity() {
     private lateinit var selectedDateText: TextView
     private lateinit var cursosAdaptador: ListaCursosAdapter
     private lateinit var dbHelper: DatabaseHelper
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,27 +43,31 @@ class HorarioActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        try {
-            var listaCursos2 = dbHelper.ListarCursos()
-            Log.i("Jose",dbHelper.ListarCursos().toString())
-            cursosAdaptador.actualizarLista(listaCursos2)
-
-        }
-        catch (e:Exception){
-            Log.i("Jose",e.toString())
-        }
-
-        //cursosAdaptador.actualizarLista(listaCursos)
+        // Mostrar la fecha actual y los cursos del día actual
+        mostrarCursosDelDiaActual()
 
         findViewById<ImageButton>(R.id.NewCourse).setOnClickListener {
             val intent = Intent(this, AgregarCursoActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, REQUEST_CODE_ADD_COURSE)
         }
 
         findViewById<ImageButton>(R.id.ViewCalendario).setOnClickListener {
             val intent = Intent(this, CalendarioActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun mostrarCursosDelDiaActual() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val currentDate = "$day/${month + 1}/$year"
+        val dayOfWeek = getDayOfWeek(year, month, day)
+        selectedDateText.text = "$currentDate - $dayOfWeek"
+
+        filterCoursesByDay(dayOfWeek)
     }
 
     private fun showDatePickerDialog() {
@@ -74,9 +80,10 @@ class HorarioActivity : AppCompatActivity() {
             this,
             { _, selectedYear, selectedMonth, selectedDay ->
                 val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                selectedDateText.text = selectedDate
-                // Aquí puedes filtrar los cursos basándote en la fecha seleccionada
-                //filterCoursesByDate(selectedDay, selectedMonth + 1, selectedYear)
+                val dayOfWeek = getDayOfWeek(selectedYear, selectedMonth, selectedDay)
+                selectedDateText.text = "$selectedDate - $dayOfWeek"
+
+                filterCoursesByDay(dayOfWeek)
             },
             year,
             month,
@@ -84,14 +91,27 @@ class HorarioActivity : AppCompatActivity() {
         )
         datePickerDialog.show()
     }
-    /*
-    private fun filterCoursesByDate(day: Int, month: Int, year: Int) {
-        val calendar = Calendar.getInstance()
-        calendar.set(year, month - 1, day)
-        val dayOfWeek = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())
 
-        val listaCursos = dbHelper.ListarCursosPorDia(dayOfWeek)
+    private fun getDayOfWeek(year: Int, month: Int, day: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, day)
+        return calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())?.replaceFirstChar { it.uppercase() } ?: ""
+    }
+
+    private fun filterCoursesByDay(dayOfWeek: String) {
+        val listaCursos = dbHelper.ListarCursos(dayOfWeek)
         Log.i("HorarioActivity", "Lista de cursos filtrados: $listaCursos")
         cursosAdaptador.actualizarLista(listaCursos)
-    }*/
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_ADD_COURSE && resultCode == RESULT_OK) {
+            // Actualiza la lista de cursos
+            mostrarCursosDelDiaActual()
+        }
+    }
+    companion object {
+        const val REQUEST_CODE_ADD_COURSE = 1
+    }
 }

@@ -39,6 +39,7 @@ class AgregarRecordatorioActivity : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.FinishRecordatorio).setOnClickListener {
             setAlarm(idCurso)
+            setResult(RESULT_OK) // Indica que el recordatorio se agregó correctamente
             finish()
         }
 

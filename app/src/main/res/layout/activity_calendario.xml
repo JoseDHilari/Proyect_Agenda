@@ -7,12 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".CalendarioActivity"
     android:background="@drawable/degradado">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:orientation="vertical">
 
         <CalendarView
             android:id="@+id/Calendario"
@@ -43,22 +42,16 @@
             android:background="@color/Manteca"
             app:layout_constraintTop_toBottomOf="@id/Calendario">
 
-            <ScrollView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_Calendario"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 android:background="@color/Amarillo_Fondo"
-                tools:ignore="MissingConstraints">
-
-                <ListView
-                    android:id="@+id/LisHorario"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </ListView>
-            </ScrollView>
+                tools:ignore="MissingConstraints"/>
         </FrameLayout>
     </LinearLayout>
+
     <ImageButton
         android:id="@+id/back"
         android:layout_width="80dp"
@@ -71,4 +64,3 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-

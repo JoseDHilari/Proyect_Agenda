@@ -1,6 +1,5 @@
 package hilari.abarca.my_first_apk
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +16,6 @@ class RecordatorioActivity : AppCompatActivity() {
     private lateinit var dbHelper: DatabaseHelper
     private lateinit var recordatoriosAdaptador: ListaRecordatoriosAdapter
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recordatorio)
@@ -40,24 +38,38 @@ class RecordatorioActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
-        try {
-            var listarRecordatorios = dbHelper.ListarRecordatorios(idCurso)
-            Log.i("Jose", dbHelper.ListarNotas(idCurso).toString())
-            recordatoriosAdaptador.actualizarLista(listarRecordatorios)
-
-        }
-        catch (e:Exception){
-            Log.i("Jose",e.toString())
-        }
+        actualizarRecordatorios(idCurso)
 
         findViewById<ImageButton>(R.id.NewRecordatorio).setOnClickListener {
             val intent = Intent(this, AgregarRecordatorioActivity::class.java)
-            intent.putExtra("idCurso",idCurso.toInt())
-            startActivity(intent)
+            intent.putExtra("idCurso", idCurso)
+            startActivityForResult(intent, REQUEST_CODE_ADD_RECORDATORIO)
         }
+
         findViewById<ImageButton>(R.id.back).setOnClickListener {
             finish()
         }
     }
 
+    private fun actualizarRecordatorios(idCurso: Int) {
+        try {
+            val listarRecordatorios = dbHelper.ListarRecordatorios(idCurso)
+            Log.i("Jose", listarRecordatorios.toString())
+            recordatoriosAdaptador.actualizarLista(listarRecordatorios)
+        } catch (e: Exception) {
+            Log.i("Jose", e.toString())
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_ADD_RECORDATORIO && resultCode == RESULT_OK) {
+            val idCurso = intent.getIntExtra("idCurso", -1)
+            actualizarRecordatorios(idCurso)
+        }
+    }
+
+    companion object {
+        const val REQUEST_CODE_ADD_RECORDATORIO = 1
+    }
 }

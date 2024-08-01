@@ -1,16 +1,15 @@
 package hilari.abarca.my_first_apk.Adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import hilari.abarca.my_first_apk.Models.CalendarioModel
 import hilari.abarca.my_first_apk.Models.RecordatorioModel
 import hilari.abarca.my_first_apk.R
-import hilari.abarca.my_first_apk.VerNotaActivity
 
 class ListaRecordatoriosAdapter : RecyclerView.Adapter<ListaRecordatoriosAdapter.ViewHolder>() {
 

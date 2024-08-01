@@ -36,9 +36,8 @@ class AgregarNotasActivity : AppCompatActivity() {
         val finishNotaButton = findViewById<ImageButton>(R.id.FinishNota)
         finishNotaButton.setOnClickListener {
             guardarNota()
-            val intent = Intent(this,NotasActivity::class.java)
-            intent.putExtra("idCurso",idCurso.toInt())
-            startActivity(intent)
+            setResult(RESULT_OK)
+            finish()
         }
     }
 

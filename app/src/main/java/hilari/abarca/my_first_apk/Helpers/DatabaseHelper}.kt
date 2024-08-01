@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import hilari.abarca.my_first_apk.Models.CalendarioModel
 import hilari.abarca.my_first_apk.Models.CursosModel
 import hilari.abarca.my_first_apk.Models.NotaModel
 import hilari.abarca.my_first_apk.Models.RecordatorioModel
@@ -74,19 +75,22 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.close()
     }
 
-    fun ListarCursos():List<CursosModel>{
+    fun ListarCursos(dia: String): List<CursosModel> {
         val cursos = mutableListOf<CursosModel>()
         val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT A.Hora_Inicio,A.Hora_Final,B.Nombre,A.idCurso FROM $TABLE_DIAS AS A INNER JOIN $TABLE_CURSO AS B ON A.idCurso = B.idCurso", null)
+        val cursor = db.rawQuery(
+            "SELECT A.Hora_Inicio, A.Hora_Final, B.Nombre, A.idCurso FROM $TABLE_DIAS AS A INNER JOIN $TABLE_CURSO AS B ON A.idCurso = B.idCurso WHERE A.Dia = ?",
+            arrayOf(dia)
+        )
 
         if (cursor.moveToFirst()) {
             do {
-                val Horainicio = cursor.getString(cursor.getColumnIndexOrThrow("Hora_Inicio"))
-                val Horafinal = cursor.getString(cursor.getColumnIndexOrThrow("Hora_Final"))
-                val NombreCurso = cursor.getString(cursor.getColumnIndexOrThrow("Nombre"))
+                val horaInicio = cursor.getString(cursor.getColumnIndexOrThrow("Hora_Inicio"))
+                val horaFinal = cursor.getString(cursor.getColumnIndexOrThrow("Hora_Final"))
+                val nombreCurso = cursor.getString(cursor.getColumnIndexOrThrow("Nombre"))
                 val idCurso = cursor.getInt(cursor.getColumnIndexOrThrow("idCurso"))
 
-                cursos.add(CursosModel(Horainicio,Horafinal,NombreCurso,true,idCurso))
+                cursos.add(CursosModel(horaInicio, horaFinal, nombreCurso, true, idCurso))
             } while (cursor.moveToNext())
         }
         cursor.close()
@@ -130,6 +134,26 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         cursor.close()
         return recordatorios
     }
+    fun ListarRecordatoriosDelMes(mes: Int, anio: Int): List<CalendarioModel> {
+        val recordatorios = mutableListOf<CalendarioModel>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT strftime('%d', Fecha) as dia, Nombre_Actividad as nombre FROM Alarma WHERE strftime('%m', Fecha) = ? AND strftime('%Y', Fecha) = ?",
+            arrayOf(mes.toString().padStart(2, '0'), anio.toString())
+        )
+        if (cursor.moveToFirst()) {
+            do {
+                val recordatorio = CalendarioModel(
+                    dia = cursor.getInt(cursor.getColumnIndexOrThrow("dia")),
+                    nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                )
+                recordatorios.add(recordatorio)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return recordatorios
+    }
+
 
     fun ObtenerNombreCurso(id: Int): String? {
         val db = this.readableDatabase
@@ -183,6 +207,21 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             put("Activar", activar)
         }
         return db.insert("Alarma", null, values)
+    }
+
+    fun ActualizarNota(idNota: Int, texto: String) {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("Descripcion", texto)
+        }
+        db.update("Notas", values, "idNotas = ?", arrayOf(idNota.toString()))
+        db.close()
+    }
+
+        fun EliminarNota(idNota: Int) {
+        val db = this.writableDatabase
+        db.delete("Notas", "idNotas = ?", arrayOf(idNota.toString()))
+        db.close()
     }
 
     companion object {

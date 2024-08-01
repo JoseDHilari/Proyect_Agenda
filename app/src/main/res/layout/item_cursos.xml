@@ -31,7 +31,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
-                    android:layout_weight="5"
+                    android:layout_weight="3"
                     android:text="7:00 - 9:00"
                     android:textColor="@color/Azul"
                     android:textSize="18dp"
@@ -41,29 +41,16 @@
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:background="@color/Azul" />
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_NombreCurso"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="10"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_NombreCurso"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="Nombre del Curso"
-                        android:textColor="@color/Azul"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/iv_Alarma"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/ic_alarma" />
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:text="Nombre del Curso"
+                    android:textColor="@color/Azul"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
 
                 <View
                     android:layout_width="1dp"

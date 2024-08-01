@@ -1,17 +1,17 @@
 package hilari.abarca.my_first_apk.Helpers
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import hilari.abarca.my_first_apk.AgregarNotasActivity
 import hilari.abarca.my_first_apk.Models.CalendarioModel
 import hilari.abarca.my_first_apk.Models.CursosModel
 import hilari.abarca.my_first_apk.Models.NotaModel
 import hilari.abarca.my_first_apk.Models.RecordatorioModel
 
-class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_TABLE_CURSO)
@@ -225,7 +225,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     companion object {
-        private const val DATABASE_NAME = "Agenda1.db"
+        private const val DATABASE_NAME = "Agenda.db"
         private const val DATABASE_VERSION = 1
         private const val TABLE_DIAS = "dias"
         private const val TABLE_CURSO = "curso"

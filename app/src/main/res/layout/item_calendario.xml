@@ -56,7 +56,15 @@
                 android:textStyle="bold"
                 android:textSize="20dp"
                 />
-
+            <ImageButton
+                android:id="@+id/Borrar"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/cancel"
+                android:scaleType="centerCrop"
+                android:background="#00000000"
+                android:padding="5dp"
+                />
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"

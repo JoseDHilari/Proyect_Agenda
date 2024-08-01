@@ -29,8 +29,7 @@ class MenuActivity : AppCompatActivity() {
         }
 
         findViewById<ImageButton>(R.id.back).setOnClickListener {
-            val intent = Intent(this, HorarioActivity::class.java)
-            startActivity(intent)
+            finish()
         }
         findViewById<LinearLayout>(R.id.Recordatorios).setOnClickListener {
             val intent = Intent(this, RecordatorioActivity::class.java)

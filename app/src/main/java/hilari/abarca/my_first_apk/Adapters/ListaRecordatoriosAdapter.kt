@@ -4,18 +4,18 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import hilari.abarca.my_first_apk.Models.CalendarioModel
+import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 import hilari.abarca.my_first_apk.Models.RecordatorioModel
 import hilari.abarca.my_first_apk.R
-
 class ListaRecordatoriosAdapter : RecyclerView.Adapter<ListaRecordatoriosAdapter.ViewHolder>() {
 
     var lstRecordatorios: List<RecordatorioModel> = emptyList()
     var context: Context? = null
-
+    private lateinit var dbHelper:DatabaseHelper
     fun actualizarLista(lst: List<RecordatorioModel>) {
         lstRecordatorios = lst
         notifyDataSetChanged()
@@ -43,6 +43,7 @@ class ListaRecordatoriosAdapter : RecyclerView.Adapter<ListaRecordatoriosAdapter
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setValues(lstRecordatorios[position])
         holder.ll_elemento.setOnClickListener {
+
         }
     }
 

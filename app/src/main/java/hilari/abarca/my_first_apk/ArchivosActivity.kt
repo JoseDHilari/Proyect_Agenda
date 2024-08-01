@@ -1,6 +1,5 @@
 package hilari.abarca.my_first_apk
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView

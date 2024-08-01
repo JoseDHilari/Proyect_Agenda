@@ -7,8 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hilari.abarca.my_first_apk.Adapters.ListaCalendarioAdapter
-import hilari.abarca.my_first_apk.Adapters.ListaRecordatoriosAdapter
-import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
+    import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 import java.util.*
 
 class CalendarioActivity : AppCompatActivity() {

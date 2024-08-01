@@ -26,7 +26,6 @@ class ListaCursosAdapter:RecyclerView.Adapter<ListaCursosAdapter.ViewHolder>() {
     class ViewHolder(view: View):RecyclerView.ViewHolder(view) {
         val tv_Hora = view.findViewById<TextView>(R.id.tv_Hora)
         val tv_NombreCurso = view.findViewById<TextView>(R.id.tv_NombreCurso)
-        val iv_Alarma = view.findViewById<ImageView>(R.id.iv_Alarma)
         val ll_elemento = view.findViewById<LinearLayout>(R.id.ll_elemento)
 
         fun setValues(model: CursosModel){

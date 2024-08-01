@@ -90,7 +90,7 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                 val nombreCurso = cursor.getString(cursor.getColumnIndexOrThrow("Nombre"))
                 val idCurso = cursor.getInt(cursor.getColumnIndexOrThrow("idCurso"))
 
-                cursos.add(CursosModel(horaInicio, horaFinal, nombreCurso, true, idCurso))
+                cursos.add(CursosModel(horaInicio, horaFinal, nombreCurso, idCurso))
             } while (cursor.moveToNext())
         }
         cursor.close()

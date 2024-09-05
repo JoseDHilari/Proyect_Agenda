@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import hilari.abarca.my_first_apk.Helpers.DatabaseHelper
 import hilari.abarca.my_first_apk.Models.RecordatorioModel
 import hilari.abarca.my_first_apk.R
+
 class ListaRecordatoriosAdapter : RecyclerView.Adapter<ListaRecordatoriosAdapter.ViewHolder>() {
 
     var lstRecordatorios: List<RecordatorioModel> = emptyList()
     var context: Context? = null
-    private lateinit var dbHelper:DatabaseHelper
+
     fun actualizarLista(lst: List<RecordatorioModel>) {
         lstRecordatorios = lst
         notifyDataSetChanged()

@@ -26,6 +26,7 @@ class ListaNotasAdapter:RecyclerView.Adapter<ListaNotasAdapter.ViewHolder>() {
         val tv_Nombre = view.findViewById<TextView>(R.id.NotaName)
         val tv_Descripcion = view.findViewById<TextView>(R.id.NotaDescripcion)
         val ll_elemento = view.findViewById<LinearLayout>(R.id.ll_elemento)
+
         fun setValues(model: NotaModel){
             tv_Nombre.setText(model.Nombre.toString())
             tv_Descripcion.setText(model.Descripcion.toString())

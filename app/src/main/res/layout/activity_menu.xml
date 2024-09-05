@@ -39,95 +39,109 @@
         app:layout_constraintTop_toBottomOf="@id/CourseName"
         android:layout_marginTop="15dp"
         tools:ignore="MissingConstraints" />
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="530dp"
+        android:layout_marginTop="84dp"
         android:columnCount="2"
+        android:padding="15dp"
         android:rowCount="2"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="90dp"
-        android:padding="15dp">
+        tools:layout_editor_absoluteX="0dp">
+
         <LinearLayout
             android:id="@+id/Recordatorios"
             android:layout_width="180dp"
             android:layout_height="240dp"
-            android:orientation="vertical"
-            android:background="@color/Celeste"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            android:background="@color/Celeste"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/clock"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:src="@drawable/clock" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:gravity="center"
                 android:text="Recordatorios:"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/Notas"
             android:layout_width="180dp"
             android:layout_height="240dp"
-            android:orientation="vertical"
-            android:background="@color/Celeste">
+            android:background="@color/Celeste"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/note"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:src="@drawable/note" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:gravity="center"
                 android:text="Notas:"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/Multimedia"
             android:layout_width="180dp"
             android:layout_height="240dp"
-            android:orientation="vertical"
-            android:background="@color/Celeste">
+            android:background="@color/Celeste"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/media"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:src="@drawable/media" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:gravity="center"
                 android:text="Multimedia:"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/Archivos"
             android:layout_width="180dp"
             android:layout_height="240dp"
-            android:orientation="vertical"
-            android:background="@color/Celeste">
+            android:background="@color/Celeste"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/file"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:src="@drawable/file" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:gravity="center"
                 android:text="Archivos:"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center"/>
+                android:textStyle="bold" />
         </LinearLayout>
     </GridLayout>
 
@@ -138,10 +152,36 @@
         android:text="Agregar NUeva Hora"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/Eliminar"
         android:backgroundTint="@color/Azul"
-        android:layout_marginBottom="30dp"
         android:textColor="@color/white"
-        android:textSize="15dp"
+        android:textSize="15sp"
         />
+    <LinearLayout
+        android:id="@+id/Eliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <Button
+            android:id="@+id/bt_EliminarCurso"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:text="Eliminar el curso"
+            android:backgroundTint="@color/Azul"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            />
+        <Button
+            android:id="@+id/bt_EliminarHora"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:text="Eliminar una hora"
+            android:backgroundTint="@color/Azul"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

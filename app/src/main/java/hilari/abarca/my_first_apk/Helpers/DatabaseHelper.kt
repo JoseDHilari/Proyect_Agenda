@@ -5,9 +5,9 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import hilari.abarca.my_first_apk.AgregarNotasActivity
 import hilari.abarca.my_first_apk.Models.CalendarioModel
 import hilari.abarca.my_first_apk.Models.CursosModel
+import hilari.abarca.my_first_apk.Models.HoraModel
 import hilari.abarca.my_first_apk.Models.NotaModel
 import hilari.abarca.my_first_apk.Models.RecordatorioModel
 
@@ -134,6 +134,7 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         cursor.close()
         return recordatorios
     }
+
     fun ListarRecordatoriosDelMes(mes: Int, anio: Int): List<CalendarioModel> {
         val recordatorios = mutableListOf<CalendarioModel>()
         val db = this.readableDatabase
@@ -154,6 +155,25 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         return recordatorios
     }
 
+    fun ListarHoras(Curso: Int): List<HoraModel> {
+        val horas = mutableListOf<HoraModel>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT idDia, Dia, Hora_Inicio, Hora_Final FROM $TABLE_DIAS WHERE idCurso = ?", arrayOf(Curso.toString()))
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                val idHora = cursor.getInt(cursor.getColumnIndexOrThrow("idDia"))
+                val dia = cursor.getString(cursor.getColumnIndexOrThrow("Dia"))
+                val horaInicio = cursor.getString(cursor.getColumnIndexOrThrow("Hora_Inicio"))
+                val horaFinal = cursor.getString(cursor.getColumnIndexOrThrow("Hora_Final"))
+
+                horas.add(HoraModel(idHora, dia, horaInicio, horaFinal))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return horas
+    }
 
     fun ObtenerNombreCurso(id: Int): String? {
         val db = this.readableDatabase
@@ -218,10 +238,24 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         db.close()
     }
 
-        fun EliminarNota(idNota: Int) {
+    fun EliminarNota(idNota: Int) {
         val db = this.writableDatabase
         db.delete("Notas", "idNotas = ?", arrayOf(idNota.toString()))
         db.close()
+    }
+
+    fun EliminarCurso(idCurso: Int): Int {
+        val db = this.writableDatabase
+        val result = db.delete("Curso", "idCurso = ?", arrayOf(idCurso.toString()))
+        db.close()
+        return result
+    }
+
+    fun EliminarHora(idHora: Int): Int {
+        val db = this.writableDatabase
+        val result = db.delete("Dias", "idDia = ?", arrayOf(idHora.toString()))
+        db.close()
+        return result
     }
 
     companion object {

@@ -1,5 +1,6 @@
 package hilari.abarca.my_first_apk
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Button
@@ -14,6 +15,7 @@ class MenuActivity : AppCompatActivity() {
 
     private lateinit var dbHelper: DatabaseHelper
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
@@ -58,5 +60,41 @@ class MenuActivity : AppCompatActivity() {
             intent.putExtra("idCurso",idCurso.toInt())
             startActivity(intent)
         }
+        findViewById<Button>(R.id.bt_EliminarCurso).setOnClickListener {
+            mostrarConfirmacionEliminarCurso(idCurso)
+        }
+        findViewById<Button>(R.id.bt_EliminarHora).setOnClickListener {
+            val intent = Intent(this, EliminarHoraActivity::class.java)
+            intent.putExtra("idCurso", idCurso.toInt())
+            startActivity(intent)
+        }
     }
+    private fun mostrarConfirmacionEliminarCurso(idCurso: Int) {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setTitle("Confirmar eliminación")
+        builder.setMessage("¿Estás seguro de que deseas eliminar este curso?")
+
+        // Botón de confirmación
+        builder.setPositiveButton("Sí") { dialog, _ ->
+            // Eliminar curso de la base de datos
+            val result = dbHelper.EliminarCurso(idCurso)
+            if (result > 0) {
+                Toast.makeText(this, "Curso eliminado", Toast.LENGTH_SHORT).show()
+                finish() // Cerrar la actividad
+            } else {
+                Toast.makeText(this, "Error al eliminar el curso", Toast.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+        }
+
+        // Botón de cancelación
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss() // Cerrar el cuadro de diálogo sin hacer nada
+        }
+
+        // Mostrar el cuadro de diálogo
+        val alertDialog: androidx.appcompat.app.AlertDialog = builder.create()
+        alertDialog.show()
+    }
+
 }

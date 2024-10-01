@@ -2,6 +2,8 @@ package hilari.abarca.my_first_apk
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.Spinner
@@ -29,12 +31,21 @@ class AgregarNuevaHoraActivity : AppCompatActivity() {
             NombreCurso.text = "$Nombre"
         }
 
-
         val spinnerDay = findViewById<Spinner>(R.id.Day)
+
         val days = listOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
-        val dayAdapter = ArrayAdapter(this, R.layout.spinner_item, days)
+
+        val dayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, days)
         dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerDay.adapter = dayAdapter
+
+        spinnerDay.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val selectedDay = parent.getItemAtPosition(position).toString()
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
 
         findViewById<ImageButton>(R.id.CancelNewCourse).setOnClickListener {
             finish()
@@ -57,6 +68,11 @@ class AgregarNuevaHoraActivity : AppCompatActivity() {
 
         try {
             if (selectedDay.isBlank()) throw IllegalArgumentException("Debe seleccionar un día")
+
+            if (startHourPicker.hour > endHourPicker.hour ||
+                (startHourPicker.hour == endHourPicker.hour && startHourPicker.minute >= endHourPicker.minute)) {
+                throw IllegalArgumentException("La hora de inicio debe ser anterior a la hora de finalización")
+            }
 
             val newDiaId = dbHelper.insertDay(CourseId, selectedDay, startHour, endHour)
             if (newDiaId != -1L) {

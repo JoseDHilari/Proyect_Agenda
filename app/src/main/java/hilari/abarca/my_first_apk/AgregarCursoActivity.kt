@@ -22,24 +22,20 @@ class AgregarCursoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_agregar_curso)
 
         dbHelper = DatabaseHelper(this)
-       //dbHelper.onUpgrade(null,1,2)
 
         val spinnerDay = findViewById<Spinner>(R.id.Day)
 
         val days = listOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
-        val dayAdapter = ArrayAdapter(this, R.layout.spinner_item, days)
+
+        val dayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, days)
         dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerDay.adapter = dayAdapter
 
-        // Manejar la selección del Spinner
         spinnerDay.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val selectedDay = parent.getItemAtPosition(position).toString()
-                // Aquí puedes hacer cualquier cosa adicional que necesites cuando se seleccione un ítem.
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // Aquí puedes manejar el caso en el que no se seleccione nada.
             }
         }
 

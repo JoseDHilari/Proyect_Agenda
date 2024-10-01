@@ -8,6 +8,7 @@ import android.util.Log
 import hilari.abarca.my_first_apk.Models.CalendarioModel
 import hilari.abarca.my_first_apk.Models.CursosModel
 import hilari.abarca.my_first_apk.Models.HoraModel
+import hilari.abarca.my_first_apk.Models.MultimediaModel
 import hilari.abarca.my_first_apk.Models.NotaModel
 import hilari.abarca.my_first_apk.Models.RecordatorioModel
 
@@ -74,6 +75,18 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         db.insert("Archivos", null, contentValues)
         db.close()
     }
+
+    fun insertarMultimedia(idCurso: Int, nombreArchivo: String, archivoMultimedia: String) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("idCurso", idCurso)
+        contentValues.put("NombreArchivo", nombreArchivo)
+        contentValues.put("FechaCreacion", System.currentTimeMillis().toString()) // Fecha actual
+        contentValues.put("Archivo_Multimedia", archivoMultimedia)
+        db.insert("Multimedia", null, contentValues)
+        db.close()
+    }
+
 
     fun ListarCursos(dia: String): List<CursosModel> {
         val cursos = mutableListOf<CursosModel>()
@@ -175,6 +188,27 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         return horas
     }
 
+    fun ListarMultimedia(idCurso: Int): List<MultimediaModel> {
+        val multimediaList = mutableListOf<MultimediaModel>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM Multimedia WHERE idCurso = ?", arrayOf(idCurso.toString()))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val idMultimedia = cursor.getInt(cursor.getColumnIndexOrThrow("idMultimedia"))
+                val nombreArchivo = cursor.getString(cursor.getColumnIndexOrThrow("NombreArchivo"))
+                val fechaCreacion = cursor.getString(cursor.getColumnIndexOrThrow("FechaCreacion"))
+                val archivoMultimedia = cursor.getString(cursor.getColumnIndexOrThrow("Archivo_Multimedia"))
+
+                multimediaList.add(MultimediaModel(idMultimedia, idCurso, nombreArchivo, fechaCreacion, archivoMultimedia))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return multimediaList
+    }
+
     fun ObtenerNombreCurso(id: Int): String? {
         val db = this.readableDatabase
         val cursor = db.rawQuery("SELECT Nombre FROM $TABLE_CURSO WHERE idCurso = ?", arrayOf(id.toString()))
@@ -259,7 +293,7 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     companion object {
-        private const val DATABASE_NAME = "Agenda.db"
+        private const val DATABASE_NAME = "Agenda_1.db"
         private const val DATABASE_VERSION = 1
         private const val TABLE_DIAS = "dias"
         private const val TABLE_CURSO = "curso"
@@ -285,7 +319,6 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
                 FOREIGN KEY(idCurso) REFERENCES Curso(idCurso)
             )
         """
-
 
         private const val CREATE_TABLE_ALARMA = """
             CREATE TABLE Alarma (
@@ -313,10 +346,13 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
             CREATE TABLE Multimedia (
                 idMultimedia INTEGER PRIMARY KEY AUTOINCREMENT,
                 idCurso INTEGER NOT NULL,
+                NombreArchivo TEXT NOT NULL,
+                FechaCreacion TEXT NOT NULL,
                 Archivo_Multimedia TEXT NOT NULL,
                 FOREIGN KEY(idCurso) REFERENCES Curso(idCurso)
             )
         """
+
 
         private const val CREATE_TABLE_ARCHIVOS = """
             CREATE TABLE Archivos (

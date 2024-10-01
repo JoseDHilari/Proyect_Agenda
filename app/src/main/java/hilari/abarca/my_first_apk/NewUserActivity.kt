@@ -21,22 +21,44 @@ class NewUserActivity : AppCompatActivity() {
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
 
+
             if (username.isNotEmpty() && password.isNotEmpty()) {
-                val sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-                editor.putString("username", username)
-                editor.putString("password", password)
-                editor.putBoolean("isUserRegistered", true)
-                editor.apply()
-
-                Toast.makeText(this, "Usuario registrado exitosamente!", Toast.LENGTH_SHORT).show()
-
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                mostrarConfirmacion(username,password)
             } else {
                 Toast.makeText(this, "Por favor, ingrese un usuario y una contraseña", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun mostrarConfirmacion(user:String , contrasena:String) {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setTitle("Confirmar Usuario")
+        builder.setMessage("¿Estás seguro que deseas registrarse con estos datos?\n LOs datos no se podran modificar una vez creado ?")
+
+        // Botón de confirmación
+        builder.setPositiveButton("Sí") { dialog, _ ->
+            // Realizamos el guardado de los datos
+            val sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("username", user)
+            editor.putString("password", contrasena)
+            editor.putBoolean("isUserRegistered", true)
+            editor.apply()
+
+            Toast.makeText(this, "Usuario registrado exitosamente!", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        // Botón de cancelación
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss() // Cerrar el cuadro de diálogo sin hacer nada
+        }
+
+        // Mostrar el cuadro de diálogo
+        val alertDialog: androidx.appcompat.app.AlertDialog = builder.create()
+        alertDialog.show()
     }
 }

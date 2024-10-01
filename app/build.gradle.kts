@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+
 }
 
 android {
@@ -33,7 +34,20 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    /*allprojects {
+        repositories {
+            maven { url "https://www.jitpack.io" }
+        }
+    }
+
+    buildscript {
+        repositories {
+            maven { url "https://www.jitpack.io" }
+        }
+    }
+    */
 }
+
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -47,4 +61,12 @@ dependencies {
 
     // Dependencias para manejar alarmas y notificaciones
     implementation("androidx.work:work-runtime-ktx:2.8.1")
+    //Previsualizacion:
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+
+    //noinspection UseTomlInstead
+    //implementation ("com.github.chrisbanes:PhotoView:2.3.0")
+
+
 }

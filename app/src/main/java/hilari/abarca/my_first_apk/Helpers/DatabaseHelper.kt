@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import hilari.abarca.my_first_apk.Models.ArchivosModel
 import hilari.abarca.my_first_apk.Models.CalendarioModel
 import hilari.abarca.my_first_apk.Models.CursosModel
 import hilari.abarca.my_first_apk.Models.HoraModel
@@ -67,13 +68,15 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         return db.insert("Notas", null, values)
     }
 
-    fun insertarArchivo(idCurso: Int, archivo: String) {
-        val db = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put("idCurso", idCurso)
-        contentValues.put("Archivo", archivo)
+    fun insertarArchivo(idCurso: Int, nombreArchivo: String, rutaArchivo: String, fecha: String) {
+        val db = writableDatabase
+        val contentValues = ContentValues().apply {
+            put("idCurso", idCurso)
+            put("nombreArchivo", nombreArchivo)
+            put("rutaArchivo", rutaArchivo)
+            put("fecha", fecha)
+        }
         db.insert("Archivos", null, contentValues)
-        db.close()
     }
 
     fun insertarMultimedia(idCurso: Int, nombreArchivo: String, archivoMultimedia: String) {
@@ -87,6 +90,17 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         db.close()
     }
 
+    fun insertAlarma(idCurso: Int, hora: String, fecha: String, nombreActividad: String, activar: Int): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("idCurso", idCurso)
+            put("Hora", hora)
+            put("Fecha", fecha)
+            put("Nombre_Actividad", nombreActividad)
+            put("Activar", activar)
+        }
+        return db.insert("Alarma", null, values)
+    }
 
     fun ListarCursos(dia: String): List<CursosModel> {
         val cursos = mutableListOf<CursosModel>()
@@ -209,6 +223,25 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         return multimediaList
     }
 
+    fun ListarArchivos(idCurso: Int): List<ArchivosModel> {
+        val archivosList = mutableListOf<ArchivosModel>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM Archivos WHERE idCurso = ?", arrayOf(idCurso.toString()))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("idArchivos"))
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombreArchivo"))
+                val fecha = cursor.getString(cursor.getColumnIndexOrThrow("fecha"))
+                val ruta = cursor.getString(cursor.getColumnIndexOrThrow("rutaArchivo"))
+                archivosList.add(ArchivosModel(id, nombre, fecha, ruta))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        return archivosList
+    }
+
     fun ObtenerNombreCurso(id: Int): String? {
         val db = this.readableDatabase
         val cursor = db.rawQuery("SELECT Nombre FROM $TABLE_CURSO WHERE idCurso = ?", arrayOf(id.toString()))
@@ -251,18 +284,6 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         return Nota
     }
 
-    fun insertAlarma(idCurso: Int, hora: String, fecha: String, nombreActividad: String, activar: Int): Long {
-        val db = this.writableDatabase
-        val values = ContentValues().apply {
-            put("idCurso", idCurso)
-            put("Hora", hora)
-            put("Fecha", fecha)
-            put("Nombre_Actividad", nombreActividad)
-            put("Activar", activar)
-        }
-        return db.insert("Alarma", null, values)
-    }
-
     fun ActualizarNota(idNota: Int, texto: String) {
         val db = this.writableDatabase
         val values = ContentValues().apply {
@@ -293,7 +314,7 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     companion object {
-        private const val DATABASE_NAME = "Agenda_1.db"
+        private const val DATABASE_NAME = "Agenda_2.db"
         private const val DATABASE_VERSION = 1
         private const val TABLE_DIAS = "dias"
         private const val TABLE_CURSO = "curso"
@@ -358,9 +379,13 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
             CREATE TABLE Archivos (
                 idArchivos INTEGER PRIMARY KEY AUTOINCREMENT,
                 idCurso INTEGER NOT NULL,
-                Archivo TEXT NOT NULL,
+                nombreArchivo TEXT NOT NULL,   -- Nombre del archivo
+                fecha TEXT NOT NULL,           -- Fecha de creación o subida
+                rutaArchivo TEXT NOT NULL,     -- Ruta o URI del archivo
                 FOREIGN KEY(idCurso) REFERENCES Curso(idCurso)
             )
         """
+
     }
+
 }

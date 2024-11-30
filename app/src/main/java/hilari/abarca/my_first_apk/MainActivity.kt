@@ -1,7 +1,10 @@
 package hilari.abarca.my_first_apk
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -12,6 +15,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                "ALARM_CHANNEL",
+                "Alarm Channel",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = "Canal para notificaciones de alarmas"
+            }
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
 
         val usernameEditText = findViewById<EditText>(R.id.Usuario)
         val passwordEditText = findViewById<EditText>(R.id.Password)

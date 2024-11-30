@@ -6,7 +6,9 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.CalendarView
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Switch
@@ -50,17 +52,22 @@ class AgregarRecordatorioActivity : AppCompatActivity() {
 
     @SuppressLint("ScheduleExactAlarm")
     private fun setAlarm(idCurso: Int) {
-        val datePicker = findViewById<CalendarView>(R.id.RecordatorioDate)
+        val datePicker = findViewById<DatePicker>(R.id.RecordatorioDate)
         val timePicker = findViewById<TimePicker>(R.id.RecordatorioHour)
         val activityName = findViewById<EditText>(R.id.AlarmaName).text.toString()
         val activateAlarm = findViewById<Switch>(R.id.BoolAlarma).isChecked
 
         val calendar = Calendar.getInstance().apply {
-            timeInMillis = datePicker.date
+            set(Calendar.YEAR, datePicker.year)
+            set(Calendar.MONTH, datePicker.month)
+            set(Calendar.DAY_OF_MONTH, datePicker.dayOfMonth)
             set(Calendar.HOUR_OF_DAY, timePicker.hour)
             set(Calendar.MINUTE, timePicker.minute)
             set(Calendar.SECOND, 0)
         }
+
+        // Log para verificar el tiempo de la alarma
+        Log.d("Alarm", "Setting alarm for: ${calendar.time}")
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
@@ -76,11 +83,13 @@ class AgregarRecordatorioActivity : AppCompatActivity() {
             putExtra("date", date)
             putExtra("activateAlarm", activateAlarm)
         }
-        val pendingIntent = PendingIntent.getBroadcast(this, idAlarma.toInt(), intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getBroadcast(this, idAlarma.toInt(), intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
 
         Toast.makeText(this, "Recordatorio establecido", Toast.LENGTH_SHORT).show()
     }
+
+
 }

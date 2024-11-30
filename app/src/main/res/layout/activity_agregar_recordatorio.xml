@@ -38,7 +38,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,11 +56,11 @@
                 android:layout_height="35dp"
                 android:inputType="text"
                 android:textSize="20sp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:hint="Nombre de la Actividad"
                 android:background="@color/Manteca"
                 android:textColor="@color/black"
-                android:textColorHint="@color/Plomo"/>
+                android:textColorHint="#BA434242"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,14 +69,18 @@
                 android:background="@color/Celeste"
                 android:text="   Fecha:"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"/>
-            <CalendarView
+
+            <DatePicker
                 android:id="@+id/RecordatorioDate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
                 android:calendarTextColor="@color/black"
                 />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,14 +91,15 @@
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
+
             <TimePicker
                 android:id="@+id/RecordatorioHour"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="110dp"
-                android:numbersSelectorColor="@color/Azul"
+                android:layout_gravity="center"
                 android:headerBackground="@color/Azul"
-                android:timePickerMode="spinner"/>
+                android:numbersSelectorColor="@color/Azul"
+                android:timePickerMode="spinner" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -105,6 +111,7 @@
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
+
             <Switch
                 android:id="@+id/BoolAlarma"
                 android:layout_width="80dp"

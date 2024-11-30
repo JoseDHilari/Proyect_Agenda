@@ -54,7 +54,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginHorizontal="15dp"/>
 
-    <ScrollView
+    <FrameLayout
         android:id="@+id/ArchivosView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -65,15 +65,16 @@
         android:layout_marginHorizontal="15dp"
         android:layout_marginBottom="130dp">
 
-        <FrameLayout
-            android:id="@+id/DesArchivos"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewArchivos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:background="@color/Amarillo_Fondo">
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/Manteca"/>
 
-        </FrameLayout>
-    </ScrollView>
+    </FrameLayout>
 
     <ImageButton
         android:id="@+id/NewArchivo"
@@ -84,15 +85,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="15dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PROXIMAMENTE"
-        android:textSize="45sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:rotation="-45"
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>

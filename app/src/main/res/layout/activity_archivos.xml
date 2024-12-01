@@ -13,7 +13,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:text="Nombre del curso"
-        android:background="@color/Manteca"
+        android:background="@drawable/titulo_curso"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:gravity="center"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:background="@color/Azul"
+        android:background="@drawable/subtitulo"
         android:text="   ARCHIVOS:"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -58,7 +58,7 @@
         android:id="@+id/ArchivosView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Manteca"
+        android:background="@drawable/titulo_curso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="140dp"
@@ -71,8 +71,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@color/Manteca"/>
+            android:layout_marginBottom="15dp" />
 
     </FrameLayout>
 

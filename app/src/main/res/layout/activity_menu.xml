@@ -13,7 +13,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:text="Nombre del curso"
-        android:background="@color/Manteca"
+        android:background="@drawable/titulo_curso"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:gravity="center"
@@ -57,7 +57,7 @@
             android:layout_height="240dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
-            android:background="@color/Celeste"
+            android:background="@drawable/etiquetas"
             android:orientation="vertical">
 
             <ImageView
@@ -80,7 +80,7 @@
             android:id="@+id/Notas"
             android:layout_width="180dp"
             android:layout_height="240dp"
-            android:background="@color/Celeste"
+            android:background="@drawable/etiquetas"
             android:orientation="vertical">
 
             <ImageView
@@ -103,7 +103,7 @@
             android:id="@+id/Multimedia"
             android:layout_width="180dp"
             android:layout_height="240dp"
-            android:background="@color/Celeste"
+            android:background="@drawable/etiquetas"
             android:orientation="vertical">
 
             <ImageView
@@ -126,7 +126,7 @@
             android:id="@+id/Archivos"
             android:layout_width="180dp"
             android:layout_height="240dp"
-            android:background="@color/Celeste"
+            android:background="@drawable/etiquetas"
             android:orientation="vertical">
 
             <ImageView

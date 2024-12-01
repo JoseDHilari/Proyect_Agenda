@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@color/Amarillo_Fondo"
-    android:padding="10dp">
-
+    android:background="@drawable/desvancer"
+    android:padding="10dp"
+    android:layout_marginVertical="2dp">
     <ImageView
         android:id="@+id/archivo_icono"
         android:layout_width="50dp"
@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:text="Nombre del archivo"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/archivo_fecha"
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="Fecha"
             android:textSize="14sp"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@color/Plomo" />
 
     </LinearLayout>
 

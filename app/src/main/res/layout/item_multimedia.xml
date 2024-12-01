@@ -4,31 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="160dp"
     android:layout_height="180dp"
-    android:background="@color/Amarillo_Fondo">
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/Azul"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/Azul"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-    <View
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:background="@color/Azul"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-    <View
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:background="@color/Azul"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints" />
+    android:background="@drawable/desvancer"
+    android:layout_margin="2dp">
+
     <ImageView
         android:id="@+id/ivPreview"
         android:layout_width="140dp"

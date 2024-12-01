@@ -13,7 +13,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:text="Nombre del curso"
-        android:background="@color/Manteca"
+        android:background="@drawable/titulo_curso"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:gravity="center"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
         android:padding="5dp"
-        android:background="@color/Azul"
+        android:background="@drawable/subtitulo"
         android:text="   NOTAS:"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -58,7 +58,7 @@
         android:id="@+id/NotasView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Manteca"
+        android:background="@drawable/titulo_curso"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,11 +66,11 @@
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="150dp"
         android:layout_marginBottom="130dp"
-        android:padding="5dp">
+        android:padding="10dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_notas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             />
     </FrameLayout>
 

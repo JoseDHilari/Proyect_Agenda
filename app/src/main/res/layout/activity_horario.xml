@@ -22,12 +22,13 @@
 
             <Button
                 android:id="@+id/datePickerButton"
-                android:layout_width="wrap_content"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/Manteca"
+                android:background="@drawable/titulo_curso"
                 android:text="Seleccionar fecha"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:padding="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -63,7 +64,7 @@
         android:layout_height="0dp"
         android:layout_weight="8"
         android:layout_marginBottom="10dp"
-        android:background="@color/Amarillo_Fondo"
+        android:background="@drawable/titulo_curso"
         android:padding="10dp">
 
         <androidx.recyclerview.widget.RecyclerView

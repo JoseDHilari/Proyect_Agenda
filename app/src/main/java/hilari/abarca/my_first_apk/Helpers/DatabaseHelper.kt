@@ -146,16 +146,17 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     fun ListarRecordatorios(Curso: Int): List<RecordatorioModel> {
         val recordatorios = mutableListOf<RecordatorioModel>()
         val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT Nombre_Actividad, Fecha, Hora, Activar FROM $TABLE_ALARMA WHERE idCurso = ?", arrayOf(Curso.toString()))
+        val cursor = db.rawQuery("SELECT idAlarma, Nombre_Actividad, Fecha, Hora, Activar FROM $TABLE_ALARMA WHERE idCurso = ?", arrayOf(Curso.toString()))
 
         if (cursor.moveToFirst()) {
             do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("idAlarma"))
                 val nombre = cursor.getString(cursor.getColumnIndexOrThrow("Nombre_Actividad"))
                 val fecha = cursor.getString(cursor.getColumnIndexOrThrow("Fecha"))
                 val hora = cursor.getString(cursor.getColumnIndexOrThrow("Hora"))
                 val activar = cursor.getInt(cursor.getColumnIndexOrThrow("Activar"))
 
-                recordatorios.add(RecordatorioModel(nombre, fecha, hora, activar))
+                recordatorios.add(RecordatorioModel(id, nombre, fecha, hora, activar))
             } while (cursor.moveToNext())
         }
         cursor.close()
@@ -310,6 +311,12 @@ class DatabaseHelper(context:Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         val db = this.writableDatabase
         val result = db.delete("Dias", "idDia = ?", arrayOf(idHora.toString()))
         db.close()
+        return result
+    }
+
+    fun EliminarRecordatorio(idRecordatorio : Int): Int {
+        val db = this.writableDatabase
+        val result = db.delete("Alarma","idAlarma = ?", arrayOf((idRecordatorio.toString())))
         return result
     }
 

@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="CustomDatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorSecondary">#000000</item>
+        <item name="android:backgroundTint">@color/Celeste</item>
+        <item name="android:colorAccent">@color/Celeste</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="CustomCalendarDate">
+        <item name="android:textColor">#000DFF</item>
+    </style>
+
+    <style name="DefaultCalendarDate">
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>
+

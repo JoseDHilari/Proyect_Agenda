@@ -27,6 +27,7 @@ class ListaRecordatoriosAdapter : RecyclerView.Adapter<ListaRecordatoriosAdapter
         val tv_Hora = view.findViewById<TextView>(R.id.tv_Hora)
         val tv_NombreAlarma = view.findViewById<TextView>(R.id.tv_NombreAlarma)
         val ll_elemento = view.findViewById<LinearLayout>(R.id.ll_elemento)
+        val bt_EliminarRecordatorio = view.findViewById<ImageButton>(R.id.bt_EliminarRecordatorio)
 
         fun setValues(model: RecordatorioModel) {
             tv_Fecha.text = model.Fecha
@@ -34,6 +35,7 @@ class ListaRecordatoriosAdapter : RecyclerView.Adapter<ListaRecordatoriosAdapter
             tv_NombreAlarma.text = model.Recordatorio
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recordatorio, parent, false)
@@ -44,9 +46,22 @@ class ListaRecordatoriosAdapter : RecyclerView.Adapter<ListaRecordatoriosAdapter
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setValues(lstRecordatorios[position])
         holder.ll_elemento.setOnClickListener {
-
+            val Recordatorio = lstRecordatorios[position]
+        }
+        holder.bt_EliminarRecordatorio.setOnClickListener {
+            val recordatorio = lstRecordatorios[position]
+            val dbHelper = DatabaseHelper(holder.itemView.context)
+            val result = dbHelper.EliminarRecordatorio(recordatorio.idAlarma)
+            if (result > 0) {
+                lstRecordatorios = lstRecordatorios.toMutableList().also {
+                    it.removeAt(position)
+                }
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, itemCount)
+            }
         }
     }
+
 
     override fun getItemCount(): Int {
         return lstRecordatorios.size

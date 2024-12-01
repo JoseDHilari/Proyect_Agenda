@@ -34,7 +34,6 @@ class ArchivosActivity : AppCompatActivity() {
         val uri = Uri.parse(archivo.rutaArchivo)
         val intent = Intent(Intent.ACTION_VIEW)
 
-        // Detectar el tipo de archivo
         val extension = archivo.rutaArchivo.substringAfterLast(".")
         val mimeType = when (extension) {
             "pdf" -> "application/pdf"

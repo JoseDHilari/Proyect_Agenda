@@ -45,14 +45,83 @@ class ArchivosActivity : AppCompatActivity() {
 
         // Establecer el tipo de archivo y URI
         intent.setDataAndType(uri, mimeType)
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // Permitir acceso al URI
 
-        // Verificar si hay una app disponible para abrir el archivo
+        // Verificar si hay una aplicación disponible para abrir el archivo
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         } else {
             Toast.makeText(this, "No hay una aplicación disponible para abrir este archivo", Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_archivos)
+
+        dbHelper = DatabaseHelper(this)
+        recyclerView = findViewById(R.id.recyclerViewArchivos)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val idCurso = intent.getIntExtra("idCurso", -1)
+        val NombreCurso = findViewById<TextView>(R.id.CourseName)
+
+        if (idCurso != -1) {
+            val Nombre = dbHelper.ObtenerNombreCurso(idCurso)
+            NombreCurso.text = "$Nombre"
+            val archivosList = dbHelper.ListarArchivos(idCurso)
+            archivosAdapter = ListaArchivosAdapter(archivosList) { archivo ->
+                abrirArchivo(archivo) // Llama a la función para abrir el archivo
+            }
+            recyclerView.adapter = archivosAdapter
+        }
+
+        findViewById<ImageButton>(R.id.back).setOnClickListener {
+            finish()
+        }
+
+        // Configura el file picker
+        filePickerLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == RESULT_OK && result.data != null) {
+                // Obtener el archivo seleccionado (su URI)
+                selectedFileUri = result.data?.data
+                selectedFileUri?.let { uri ->
+                    val filePath = uri.toString() // Convertir URI a String
+                    Toast.makeText(this, "Archivo seleccionado: $filePath", Toast.LENGTH_LONG).show()
+                    // Guardar el archivo en la base de datos
+                    saveFileToDatabase(idCurso, filePath) // Asegúrate de que filePath sea un URI correcto
+                }
+            } else {
+                Toast.makeText(this, "No se seleccionó ningún archivo", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        findViewById<ImageButton>(R.id.NewArchivo).setOnClickListener {
+            if (idCurso != -1) {
+                openFilePicker()
+            } else {
+                Toast.makeText(this, "Error: No se puede guardar sin un curso válido", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun openFilePicker() {
+        // Crear un intent para abrir el selector de documentos
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "*/*"
+            putExtra(
+                Intent.EXTRA_MIME_TYPES,
+                arrayOf(
+                    "application/pdf",
+                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                )
+            )
+        }
+        filePickerLauncher.launch(intent)
     }
 
     private fun saveFileToDatabase(idCurso: Int, filePath: String) {
@@ -97,83 +166,6 @@ class ArchivosActivity : AppCompatActivity() {
         }
         return null
     }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_archivos)
-
-        dbHelper = DatabaseHelper(this)
-        recyclerView = findViewById(R.id.recyclerViewArchivos)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        val idCurso = intent.getIntExtra("idCurso", -1)
-        val NombreCurso = findViewById<TextView>(R.id.CourseName)
-
-        if (idCurso != -1) {
-            val Nombre = dbHelper.ObtenerNombreCurso(idCurso)
-            NombreCurso.text = "$Nombre"
-            val archivosList = dbHelper.ListarArchivos(idCurso)
-            archivosAdapter = ListaArchivosAdapter(archivosList) { archivo ->
-                abrirArchivo(archivo) // Llama a la función para abrir el archivo
-            }
-            recyclerView.adapter = archivosAdapter
-        }
-
-        findViewById<ImageButton>(R.id.back).setOnClickListener {
-            finish()
-        }
-
-        // Configura el file picker
-        filePickerLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == RESULT_OK && result.data != null) {
-                // Obtener el archivo seleccionado (su URI)
-                selectedFileUri = result.data?.data
-                selectedFileUri?.let {
-                    val filePath = it.toString() // Convertir URI a String
-                    Toast.makeText(this, "Archivo seleccionado: $filePath", Toast.LENGTH_LONG)
-                        .show()
-                    // Guardar el archivo en la base de datos
-                    saveFileToDatabase(idCurso, filePath)
-                }
-            } else {
-                Toast.makeText(this, "No se seleccionó ningún archivo", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        findViewById<ImageButton>(R.id.NewArchivo).setOnClickListener {
-            if (idCurso != -1) {
-                openFilePicker()
-            } else {
-                Toast.makeText(
-                    this,
-                    "Error: No se puede guardar sin un curso válido",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
-
-
-    private fun openFilePicker() {
-        // Crear un intent para abrir el selector de documentos
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "*/*"
-            putExtra(
-                Intent.EXTRA_MIME_TYPES,
-                arrayOf(
-                    "application/pdf",
-                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                    "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-                )
-            )
-        }
-        filePickerLauncher.launch(intent)
-    }
-
 
     private fun getFileNameFromUri(uri: Uri): String {
         var fileName = ""
